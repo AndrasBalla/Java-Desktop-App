@@ -10,6 +10,26 @@ public class Ticket {
     private Line line;
     private String destination;
     private String source;
+    private String purchaseDate;
+
+    public String getFareDate() {
+        return FareDate;
+    }
+
+    public void setFareDate(String fareDate) {
+        FareDate = fareDate;
+    }
+
+    public String getPurchaseDate() {
+
+        return purchaseDate;
+    }
+
+    public void setPurchaseDate(String purchaseDate) {
+        this.purchaseDate = purchaseDate;
+    }
+
+    private String FareDate;
 
     public Line getLine() {
         return line;

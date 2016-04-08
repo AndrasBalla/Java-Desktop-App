@@ -43,7 +43,7 @@ public class Buss {
     }
 
     public String toString(){
-        return "Buss Regnr: " + id + " Driver: " + passengers.get(0);
+        return "Buss Registration Number: " + id + " Driver: " + passengers.get(0);
     }
 
     private void checkId(String inId){

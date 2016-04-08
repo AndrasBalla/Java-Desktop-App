@@ -6,6 +6,15 @@ package System.Objekt;
 public class Person {
     protected String id;
     protected String name;
+    protected String age;
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
 
     public String getId(){
         return id;
