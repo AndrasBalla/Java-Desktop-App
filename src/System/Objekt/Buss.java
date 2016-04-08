@@ -9,11 +9,21 @@ public class Buss {
     private String id;
     private ArrayList<Person> passengers = new ArrayList<Person>();
     private String lineId;
+    private boolean isActive;
 
     public Buss(String inId, Driver driver ){
+        isActive = false;
         passengers.add(null);
         checkId(inId);
         passengers.set(0,driver);
+    }
+
+    public void setActive(Boolean active){
+        isActive = active;
+    }
+
+    public boolean getActive(){
+        return isActive;
     }
 
     public void setLineId(String inLineId){

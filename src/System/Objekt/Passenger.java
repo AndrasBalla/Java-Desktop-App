@@ -7,15 +7,6 @@ public class Passenger extends Person{
     private String name;
     private Ticket ticket;
 
-
-    public void setName(String inName){
-        name = inName;
-    }
-
-    public String getName(){
-        return name;
-    }
-
     public void setTicket(Ticket inTicket){
         ticket = inTicket;
     }
