@@ -11,9 +11,18 @@ import java.util.ArrayList;
 public class Line {
     private String id;
     private ArrayList<Stop> stops;
+    private Buss buss;
 
     public Line (){
         stops = new ArrayList<Stop>();
+    }
+
+    public Buss getBuss() {
+        return buss;
+    }
+
+    public void setBuss(Buss buss) {
+        this.buss = buss;
     }
 
     public void setId(String inId){
@@ -39,7 +48,7 @@ public class Line {
 
     public String toString(){
         for (int i = 0; i < stops.size(); i++){
-            System.out.println(stops.get(i).toString());
+            System.out.println("Buss Stop: " + stops.get(i).toString());
         }
         return "You got it";
     }

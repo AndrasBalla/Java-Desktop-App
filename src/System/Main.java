@@ -1,23 +1,45 @@
 package System;
 
 import System.Database.Buss_lines.Xml_Line;
-import System.Objekt.Buss;
-import System.Objekt.Driver;
-import System.Objekt.Line;
-import System.Objekt.Stop;
+import System.Objekt.*;
 
 public class Main {
 
     public static void main(String[] args) {
-        Driver driver = new Driver();
-        driver.setId("001");
-        driver.setName("Henrik");
-        System.out.println(driver.toString());
-        Buss one = new Buss("DXD868",driver);
-        System.out.println(one.toString());
+        testBuss();
         testStop();
         testLine();
         testXmlLine();
+    }
+
+    public static void testBuss(){
+        System.out.print("\nTesting Buss: \n");
+        Driver driver = new Driver();
+        driver.setId("001");
+        driver.setName("Henrik");
+        System.out.println("Driver: " + driver.toString());
+        Buss buss = new Buss("DXD868",driver);
+        System.out.println(buss.toString());
+        Stop oneStop = new Stop("01","Ringen","Halmstad");
+        Stop twoStop = new Stop("02","Central","Halmstad");
+        Stop threeStop = new Stop("03","Tåg","Halmstad");
+        Line line = new Line();
+        line.addStops(oneStop);
+        line.addStops(twoStop);
+        line.addStops(threeStop);
+        line.setBuss(buss);
+        line.toString();
+        Passenger one = new Passenger();
+        Passenger two = new Passenger();
+        Passenger three = new Passenger();
+        Passenger four = new Passenger();
+        Passenger five = new Passenger();
+        buss.setPassengers(one);
+        buss.setPassengers(two);
+        buss.setPassengers(three);
+        buss.setPassengers(four);
+        buss.setPassengers(five);
+        System.out.println(buss.toString());
     }
 
     public static void testStop(){

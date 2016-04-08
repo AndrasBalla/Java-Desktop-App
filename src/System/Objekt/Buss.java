@@ -43,7 +43,11 @@ public class Buss {
     }
 
     public String toString(){
-        return "Buss Registration Number: " + id + " Driver: " + passengers.get(0);
+        String output = "Buss Registration Number: " + id + " Driver: " + passengers.get(0) + " Passengers: ";
+        for (int i = 1; i < passengers.size(); i++){
+            output += passengers.get(i).toString();
+        }
+        return output;
     }
 
     private void checkId(String inId){
@@ -59,7 +63,6 @@ public class Buss {
                 System.out.println("The Buss registration is invalid");
             }else {
                 id = inId;
-                System.out.println("Letters: " + letters + " Numbers: " + numbers);
             }
         }
 

@@ -7,6 +7,10 @@ public class Passenger extends Person{
     private String name;
     private Ticket ticket;
 
+    public Passenger(){
+
+    }
+
     public void setTicket(Ticket inTicket){
         ticket = inTicket;
     }
