@@ -5,4 +5,5 @@
 out/
 
 #Intellij
-*.iml
+Buss_System.iml
+.idea
