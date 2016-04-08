@@ -4,40 +4,15 @@ import java.io.File;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 
 import System.Objekt.Line;
-import System.Objekt.Stop;
 
 /**
  * Created by Spiks on 2016-04-08.
  */
 public class Xml_Line {
-    Stop stop = new Stop();
     private static final String FILE_NAME = "src/System/Database/Buss_lines/";
-
-    public void generateStop(){
-        stop.setId("01");
-        stop.setName("Ringen");
-        stop.setLocation("Halmstad");
-    }
-
-    public void toXml(Line line, String name){
-        try {
-
-            File file = new File(FILE_NAME + name);
-            JAXBContext jaxbContext = JAXBContext.newInstance(Line.class);
-            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-
-            // output pretty printed
-            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-
-            jaxbMarshaller.marshal(line, file);
-            jaxbMarshaller.marshal(line, System.out);
-
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        }
-    }
 
     public void writeXml(Line line, String name){
         try {
@@ -53,6 +28,19 @@ public class Xml_Line {
         } catch (JAXBException e) {
             e.printStackTrace();
         }
+    }
+
+    public Line readXml(String name){
+        try{
+            JAXBContext context = JAXBContext.newInstance(Line.class);
+            Unmarshaller un = context.createUnmarshaller();
+            System.out.println(this.getClass().getResource(name));
+            Line temp = (Line) un.unmarshal(new File(FILE_NAME + name));
+            return temp;
+        } catch(JAXBException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 
