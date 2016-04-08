@@ -21,7 +21,6 @@ public class Ticket {
     }
 
     public String getPurchaseDate() {
-
         return purchaseDate;
     }
 

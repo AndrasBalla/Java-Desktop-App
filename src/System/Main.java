@@ -1,5 +1,6 @@
 package System;
 
+import System.Database.Buss_lines.Xml_Line;
 import System.Objekt.Buss;
 import System.Objekt.Driver;
 
@@ -14,5 +15,8 @@ public class Main {
         System.out.println(driver.toString());
         Buss one = new Buss("DXD868",driver);
         System.out.println(one.toString());
+        Xml_Line line = new Xml_Line();
+        line.generateStop();
+        line.toXml();
     }
 }

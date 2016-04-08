@@ -1,10 +1,13 @@
 package System.Objekt;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 
 /**
  * Created by Spiks on 2016-04-08.
  */
+@XmlRootElement
 public class Line {
     private String id;
     private ArrayList<Stop> stops;
@@ -21,6 +24,7 @@ public class Line {
         return id;
     }
 
+    @XmlElement(name = "book")
     public void setStops(Stop stop){
         stops.add(stop);
     }
