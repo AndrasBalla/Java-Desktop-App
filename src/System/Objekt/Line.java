@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * Created by Spiks on 2016-04-08.
  */
-@XmlRootElement
+@XmlRootElement(name = "line")
 public class Line {
     private String id;
     private ArrayList<Stop> stops;
@@ -24,12 +24,23 @@ public class Line {
         return id;
     }
 
-    @XmlElement(name = "book")
-    public void setStops(Stop stop){
+    public void addStops(Stop stop){
         stops.add(stop);
+    }
+
+    @XmlElement(name = "stop")
+    public void setStops(ArrayList<Stop> Stops){
+        this.stops = Stops;
     }
 
     public ArrayList<Stop> getStops(){
         return stops;
+    }
+
+    public String toString(){
+        for (int i = 0; i < stops.size(); i++){
+            System.out.println(stops.get(i).toString());
+        }
+        return "You got it";
     }
 }

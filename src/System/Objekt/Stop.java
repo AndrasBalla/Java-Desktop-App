@@ -8,18 +8,26 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * Created by Spiks on 2016-04-08.
  */
-@XmlRootElement(name = "Stop")
+@XmlRootElement(name = "stop")
 @XmlType(propOrder = {"location","name"})
 public class Stop {
     private String id;
     private String name;
     private String location;
 
+    public Stop(String inId, String inName, String inLocation){
+        id = inId;
+        name = inName;
+        location = inLocation;
+    }
+
+    public Stop(){}
+
+    @XmlAttribute
     public String getId() {
         return id;
     }
 
-    @XmlAttribute
     public void setId(String id) {
         this.id = id;
     }
@@ -28,7 +36,6 @@ public class Stop {
         return location;
     }
 
-    @XmlElement
     public void setLocation(String location) {
         this.location = location;
     }
@@ -37,8 +44,11 @@ public class Stop {
         return name;
     }
 
-    @XmlElement
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String toString(){
+        return "Id: " + id + " Name: " + name + " Location: " + location;
     }
 }
