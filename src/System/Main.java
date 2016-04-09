@@ -10,6 +10,7 @@ public class Main {
         testStop();
         testLine();
         testXmlLine();
+        testXmlBuses();
     }
 
     public static void testBuss(){
@@ -34,11 +35,11 @@ public class Main {
         Passenger three = new Passenger();
         Passenger four = new Passenger();
         Passenger five = new Passenger();
-        buss.setPassengers(one);
-        buss.setPassengers(two);
-        buss.setPassengers(three);
-        buss.setPassengers(four);
-        buss.setPassengers(five);
+        buss.addPassengers(one);
+        buss.addPassengers(two);
+        buss.addPassengers(three);
+        buss.addPassengers(four);
+        buss.addPassengers(five);
         System.out.println(buss.toString());
     }
 
@@ -79,8 +80,37 @@ public class Main {
         line.addStops(three);
         line.toString();
         Xml_Line lineFile = new Xml_Line();
-        lineFile.writeXml(line,"line02.xml");
-        Line from = lineFile.readXml("line02.xml");
+        lineFile.writeXmlLine(line,"line02.xml");
+        Line from = lineFile.readXmlLine("line02.xml");
         from.toString();
+    }
+
+    public static void testXmlBuses(){
+        System.out.print("\nTesting Xml Buses: \n");
+        Driver driver = new Driver();
+        driver.setId("001");
+        driver.setName("Henrik");
+        Buss one = new Buss();
+        Buss two = new Buss();
+        Buss three = new Buss();
+        one.setDriver(driver);
+        two.setDriver(driver);
+        three.setDriver(driver);
+        one.setId("DXD868");
+        two.setId("DXD878");
+        three.setId("DXD888");
+        one.setActive(true);
+        two.setActive(true);
+        three.setActive(true);
+        System.out.println(one.toString());
+        Buses buses = new Buses();
+        buses.addBuses(one);
+        buses.addBuses(two);
+        buses.addBuses(three);
+        Xml_Line lineFile = new Xml_Line();
+        lineFile.writeXmlBuses(buses);
+        Buses from = lineFile.readXmlBuses();
+        System.out.println(from.toString());
+        System.out.println(from.getInactive().toString());
     }
 }

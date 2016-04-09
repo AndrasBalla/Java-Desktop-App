@@ -1,45 +1,70 @@
 package System.Objekt;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.XmlTransient;
 import java.util.ArrayList;
 
 /**
  * Created by Spiks on 2016-04-08.
  */
+@XmlRootElement(name = "Buss")
+@XmlType(propOrder = {"id","active","driver"})
 public class Buss {
     private String id;
     private ArrayList<Person> passengers = new ArrayList<Person>();
-    private String lineId;
-    private boolean isActive;
+    private boolean active;
+    private Driver driver;
+    private final int size = 17;
 
     public Buss(String inId, Driver driver ){
-        isActive = false;
+        active = false;
         passengers.add(null);
+
         checkId(inId);
         passengers.set(0,driver);
     }
 
-    public void setActive(Boolean active){
-        isActive = active;
+    public Buss(){
+
     }
 
-    public boolean getActive(){
-        return isActive;
+    public String getId() {
+        return id;
     }
 
-    public void setLineId(String inLineId){
-        lineId = inLineId;
+    public void setId(String id) {
+        checkId(id);
     }
 
-    public String getLineId(){
-        return lineId;
+    @XmlTransient
+    public void setPassengers(ArrayList<Person> passengers) {
+        this.passengers = passengers;
     }
 
-    public void setPassengers(Passenger inPerson){
+    public void addPassengers(Passenger inPerson){
         passengers.add(inPerson);
     }
 
     public ArrayList<Person> getPassengers(){
         return passengers;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public void setDriver(Driver inDriver){
+        driver = inDriver;
+        passengers.add(driver);
+    }
+
+    public Driver getDriver(){
+        return driver;
     }
 
     public String toString(){
