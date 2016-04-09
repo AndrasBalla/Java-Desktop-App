@@ -35,8 +35,8 @@ public class Buses {
 
     public String toString(){
         String out = "";
-        for(int i = 0; i < buses.size(); i++){
-            out += buses.get(i).toString();
+        for(Buss buss: buses){
+            out += buss.toString() + "\n";
         }
         return out;
     }

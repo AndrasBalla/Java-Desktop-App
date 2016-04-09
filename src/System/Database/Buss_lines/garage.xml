@@ -2,7 +2,7 @@
 <Garage>
     <Buss>
         <id>DXD868</id>
-        <active>true</active>
+        <active>false</active>
         <driver>
             <id>001</id>
             <name>Henrik</name>

@@ -1,6 +1,7 @@
 package System.Objekt;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 
@@ -25,6 +26,7 @@ public class Line {
         this.buss = buss;
     }
 
+    @XmlAttribute
     public void setId(String inId){
         id = inId;
     }

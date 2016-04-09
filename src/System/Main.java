@@ -13,7 +13,7 @@ public class Main {
         testXmlBuses();
     }
 
-    public static void testBuss(){
+    private static void testBuss(){
         System.out.print("\nTesting Buss: \n");
         Driver driver = new Driver();
         driver.setId("001");
@@ -28,6 +28,7 @@ public class Main {
         line.addStops(oneStop);
         line.addStops(twoStop);
         line.addStops(threeStop);
+        line.setId("10");
         line.setBuss(buss);
         line.toString();
         Passenger one = new Passenger();
@@ -43,7 +44,7 @@ public class Main {
         System.out.println(buss.toString());
     }
 
-    public static void testStop(){
+    private static void testStop(){
         Stop stop = new Stop("01","Sjukhuset","Halmstad");
         System.out.print("\nTesting Stop: \n");
         System.out.println(stop.toString());
@@ -57,7 +58,7 @@ public class Main {
         System.out.println(one.toString());
     }
 
-    public static void testLine(){
+    private static void testLine(){
         System.out.print("\nTesting Line: \n");
         Stop oneStop = new Stop("01","Ringen","Halmstad");
         Stop two = new Stop("02","Central","Halmstad");
@@ -69,7 +70,7 @@ public class Main {
         line.toString();
     }
 
-    public static void testXmlLine(){
+    private static void testXmlLine(){
         System.out.print("\nTesting Xml Line: \n");
         Stop oneStop = new Stop("01","Ringen","Halmstad");
         Stop two = new Stop("02","Central","Halmstad");
@@ -78,14 +79,15 @@ public class Main {
         line.addStops(oneStop);
         line.addStops(two);
         line.addStops(three);
+        line.setId("10");
         line.toString();
         Xml_Line lineFile = new Xml_Line();
-        lineFile.writeXmlLine(line,"line02.xml");
-        Line from = lineFile.readXmlLine("line02.xml");
+        lineFile.writeXmlLine(line,"line" + line.getId() + ".xml");
+        Line from = lineFile.readXmlLine("line" + line.getId() + ".xml");
         from.toString();
     }
 
-    public static void testXmlBuses(){
+    private static void testXmlBuses(){
         System.out.print("\nTesting Xml Buses: \n");
         Driver driver = new Driver();
         driver.setId("001");
@@ -99,7 +101,7 @@ public class Main {
         one.setId("DXD868");
         two.setId("DXD878");
         three.setId("DXD888");
-        one.setActive(true);
+        one.setActive(false);
         two.setActive(true);
         three.setActive(true);
         System.out.println(one.toString());
