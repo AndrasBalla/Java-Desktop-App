@@ -8,8 +8,8 @@ public class Ticket {
     private String passengerName;
     private String cost;
     private Line line;
-    private String destination;
-    private String source;
+    private Stop destination;
+    private Stop source;
     private String purchaseDate;
 
     public String getFareDate() {

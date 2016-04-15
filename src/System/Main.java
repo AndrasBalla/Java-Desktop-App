@@ -6,6 +6,19 @@ import System.Objekt.*;
 public class Main {
 
     public static void main(String[] args) {
+        Person person = new Person();
+        try{
+            person.setId("811218-9876");
+        }catch (Person.CheckIdException e){
+            e.printStackTrace();
+        }
+
+        Passenger passenger = new Passenger();
+        try{
+            passenger.setId("811218-9876");
+        }catch (Person.CheckIdException e){
+            e.printStackTrace();
+        }
         testBuss();
         testStop();
         testLine();

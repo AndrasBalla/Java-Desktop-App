@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="013c457b-816d-4974-b1f2-4d3199ee78c2" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/System/Database/Buss_lines/line01.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/System/Database/Buss_lines/line02.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System/Database/Buss_lines/garage.xml" afterPath="$PROJECT_DIR$/src/System/Database/Buss_lines/garage.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System/Main.java" afterPath="$PROJECT_DIR$/src/System/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System/Objekt/Buses.java" afterPath="$PROJECT_DIR$/src/System/Objekt/Buses.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System/Objekt/Line.java" afterPath="$PROJECT_DIR$/src/System/Objekt/Line.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System/Objekt/Person.java" afterPath="$PROJECT_DIR$/src/System/Objekt/Person.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System/Objekt/Ticket.java" afterPath="$PROJECT_DIR$/src/System/Objekt/Ticket.java" />
     </list>
     <ignored path="Buss_System.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,79 +28,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/System/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="85" column="46" selection-start-line="85" selection-start-column="46" selection-end-line="85" selection-end-column="46" />
+            <state relative-caret-position="289">
+              <caret line="17" column="36" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="line10.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/System/Database/Buss_lines/line10.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Buss.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/System/Objekt/Buss.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="37" column="5" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#411#419#0" expanded="true" />
-                <element signature="method#Buss#0;class#Buss#0" expanded="false" />
-                <element signature="method#Buss#1;class#Buss#0" expanded="false" />
-                <element signature="method#setDriver#0;class#Buss#0" expanded="false" />
-                <element signature="method#checkId#0;class#Buss#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Person.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/System/Objekt/Person.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Driver.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/System/Objekt/Driver.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="docComment;class#Driver#0" expanded="false" />
-                <element signature="e#914#915#0" expanded="true" />
-                <element signature="e#995#996#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Line.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/System/Objekt/Line.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="257">
-              <caret line="28" column="17" selection-start-line="28" selection-start-column="17" selection-end-line="28" selection-end-column="17" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#388#389#0" expanded="true" />
-                <element signature="e#433#434#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -112,17 +43,44 @@
       <file leaf-file-name="Buses.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/System/Objekt/Buses.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+            <state relative-caret-position="357">
+              <caret line="29" column="28" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="docComment;class#Buses#0" expanded="false" />
-                <element signature="e#338#339#0" expanded="true" />
-                <element signature="e#366#367#0" expanded="true" />
-                <element signature="e#448#449#0" expanded="true" />
-                <element signature="e#482#483#0" expanded="true" />
-                <element signature="e#520#521#0" expanded="true" />
-                <element signature="e#551#552#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Buss.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/System/Objekt/Buss.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="35" column="34" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#411#419#0" expanded="true" />
+                <element signature="method#Buss#0;class#Buss#0" expanded="false" />
+                <element signature="method#Buss#1;class#Buss#0" expanded="false" />
+                <element signature="e#818#819#0" expanded="true" />
+                <element signature="method#setDriver#0;class#Buss#0" expanded="false" />
+                <element signature="method#checkId#0;class#Buss#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Driver.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/System/Objekt/Driver.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="184">
+              <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="docComment;class#Driver#0" expanded="false" />
+                <element signature="e#507#508#0" expanded="true" />
+                <element signature="e#547#548#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -157,8 +115,6 @@
         <option value="$PROJECT_DIR$/src/Objekt/Person.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/src/System/Objekt/Person.java" />
-        <option value="$PROJECT_DIR$/src/System/Objekt/Ticket.java" />
         <option value="$PROJECT_DIR$/src/System/Database/Buss_lines/books.xml" />
         <option value="$PROJECT_DIR$/src/System/Objekt/Stop.java" />
         <option value="$PROJECT_DIR$/src/System/Objekt/Passenger.java" />
@@ -168,6 +124,8 @@
         <option value="$PROJECT_DIR$/src/System/Objekt/Buss.java" />
         <option value="$PROJECT_DIR$/src/System/Objekt/Buses.java" />
         <option value="$PROJECT_DIR$/src/System/Objekt/Line.java" />
+        <option value="$PROJECT_DIR$/src/System/Objekt/Ticket.java" />
+        <option value="$PROJECT_DIR$/src/System/Objekt/Person.java" />
         <option value="$PROJECT_DIR$/src/System/Main.java" />
       </list>
     </option>
@@ -208,7 +166,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -291,8 +251,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -731,16 +689,18 @@
       <workItem from="1460114537431" duration="3808000" />
       <workItem from="1460118646250" duration="10479000" />
       <workItem from="1460135922898" duration="1226000" />
-      <workItem from="1460202471273" duration="6433000" />
+      <workItem from="1460202471273" duration="6680000" />
+      <workItem from="1460542288531" duration="1048000" />
+      <workItem from="1460732851738" duration="7414000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22882000" />
+    <option name="totallyTimeSpent" value="31591000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -750,7 +710,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32683983" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -810,6 +770,7 @@
             <element signature="e#411#419#0" expanded="true" />
             <element signature="method#Buss#0;class#Buss#0" expanded="false" />
             <element signature="method#Buss#1;class#Buss#0" expanded="false" />
+            <element signature="e#818#819#0" expanded="true" />
             <element signature="method#setDriver#0;class#Buss#0" expanded="false" />
             <element signature="method#checkId#0;class#Buss#0" expanded="false" />
           </folding>
@@ -830,7 +791,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
-          <folding />
+          <folding>
+            <element signature="method#setId#0;class#Person#0" expanded="false" />
+            <element signature="method#checkId#0;class#Person#0" expanded="false" />
+            <element signature="class#CheckIdException#0;class#Person#0" expanded="false" />
+            <element signature="e#2670#2671#0" expanded="true" />
+            <element signature="e#2708#2709#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -873,6 +840,7 @@
             <element signature="e#411#419#0" expanded="true" />
             <element signature="method#Buss#0;class#Buss#0" expanded="false" />
             <element signature="method#Buss#1;class#Buss#0" expanded="false" />
+            <element signature="e#818#819#0" expanded="true" />
             <element signature="method#setDriver#0;class#Buss#0" expanded="false" />
             <element signature="method#checkId#0;class#Buss#0" expanded="false" />
           </folding>
@@ -893,7 +861,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
-          <folding />
+          <folding>
+            <element signature="method#setId#0;class#Person#0" expanded="false" />
+            <element signature="method#checkId#0;class#Person#0" expanded="false" />
+            <element signature="class#CheckIdException#0;class#Person#0" expanded="false" />
+            <element signature="e#2670#2671#0" expanded="true" />
+            <element signature="e#2708#2709#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -936,6 +910,7 @@
             <element signature="e#411#419#0" expanded="true" />
             <element signature="method#Buss#0;class#Buss#0" expanded="false" />
             <element signature="method#Buss#1;class#Buss#0" expanded="false" />
+            <element signature="e#818#819#0" expanded="true" />
             <element signature="method#setDriver#0;class#Buss#0" expanded="false" />
             <element signature="method#checkId#0;class#Buss#0" expanded="false" />
           </folding>
@@ -954,7 +929,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
-          <folding />
+          <folding>
+            <element signature="method#setId#0;class#Person#0" expanded="false" />
+            <element signature="method#checkId#0;class#Person#0" expanded="false" />
+            <element signature="class#CheckIdException#0;class#Person#0" expanded="false" />
+            <element signature="e#2670#2671#0" expanded="true" />
+            <element signature="e#2708#2709#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1064,49 +1045,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/System/Database/Buss_lines/lines.xml" />
-    <entry file="file://$PROJECT_DIR$/src/System/Objekt/Ticket.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="22" column="37" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
-          <folding>
-            <element signature="docComment;class#Ticket#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/System/Objekt/schema1.xsd">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/System/Objekt/Passenger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/System/Objekt/schema1.xsd" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_72/src.zip!/java/util/ArrayList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
           <caret line="652" column="0" selection-start-line="652" selection-start-column="0" selection-end-line="652" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/System/Objekt/Stop.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="51" column="73" selection-start-line="51" selection-start-column="73" selection-end-line="51" selection-end-column="73" />
-          <folding>
-            <element signature="docComment;class#Stop#0" expanded="false" />
-            <element signature="e#1035#1036#0" expanded="true" />
-            <element signature="e#1115#1116#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1128,87 +1072,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/System/Objekt/Buss.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="37" column="5" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#411#419#0" expanded="true" />
-            <element signature="method#Buss#0;class#Buss#0" expanded="false" />
-            <element signature="method#Buss#1;class#Buss#0" expanded="false" />
-            <element signature="method#setDriver#0;class#Buss#0" expanded="false" />
-            <element signature="method#checkId#0;class#Buss#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/System/Objekt/Person.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/System/Objekt/Driver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;class#Driver#0" expanded="false" />
-            <element signature="e#914#915#0" expanded="true" />
-            <element signature="e#995#996#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/System/Objekt/Buses.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;class#Buses#0" expanded="false" />
-            <element signature="e#338#339#0" expanded="true" />
-            <element signature="e#366#367#0" expanded="true" />
-            <element signature="e#448#449#0" expanded="true" />
-            <element signature="e#482#483#0" expanded="true" />
-            <element signature="e#520#521#0" expanded="true" />
-            <element signature="e#551#552#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/System/Objekt/Line.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="28" column="17" selection-start-line="28" selection-start-column="17" selection-end-line="28" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#388#389#0" expanded="true" />
-            <element signature="e#433#434#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/System/Database/Buss_lines/line01.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="6" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/System/Database/Buss_lines/line02.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/System/Database/Buss_lines/line01.xml" />
+    <entry file="file://$PROJECT_DIR$/src/System/Database/Buss_lines/line02.xml" />
     <entry file="file://$PROJECT_DIR$/src/System/Database/Buss_lines/line10.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -1217,12 +1082,122 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/System/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/System/Objekt/Stop.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="85" column="46" selection-start-line="85" selection-start-column="46" selection-end-line="85" selection-end-column="46" />
+        <state relative-caret-position="578">
+          <caret line="51" column="73" selection-start-line="51" selection-start-column="73" selection-end-line="51" selection-end-column="73" />
+          <folding>
+            <element signature="docComment;class#Stop#0" expanded="false" />
+            <element signature="e#1035#1036#0" expanded="true" />
+            <element signature="e#1115#1116#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/System/Objekt/Line.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="28" column="17" selection-start-line="28" selection-start-column="17" selection-end-line="28" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/System/Objekt/Passenger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/System/Objekt/Ticket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding>
+            <element signature="docComment;class#Ticket#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_72/src.zip!/java/lang/NumberFormatException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="439">
+          <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_72/src.zip!/java/lang/Integer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="591" column="0" selection-start-line="591" selection-start-column="0" selection-end-line="591" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/System/Objekt/Person.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="24" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
+          <folding>
+            <element signature="method#setId#0;class#Person#0" expanded="false" />
+            <element signature="method#checkId#0;class#Person#0" expanded="false" />
+            <element signature="class#CheckIdException#0;class#Person#0" expanded="false" />
+            <element signature="e#2670#2671#0" expanded="true" />
+            <element signature="e#2708#2709#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/System/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="36" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/System/Objekt/Buses.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="29" column="28" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#Buses#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/System/Objekt/Buss.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="35" column="34" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#411#419#0" expanded="true" />
+            <element signature="method#Buss#0;class#Buss#0" expanded="false" />
+            <element signature="method#Buss#1;class#Buss#0" expanded="false" />
+            <element signature="e#818#819#0" expanded="true" />
+            <element signature="method#setDriver#0;class#Buss#0" expanded="false" />
+            <element signature="method#checkId#0;class#Buss#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/System/Objekt/Driver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#Driver#0" expanded="false" />
+            <element signature="e#507#508#0" expanded="true" />
+            <element signature="e#547#548#0" expanded="true" />
           </folding>
         </state>
       </provider>
