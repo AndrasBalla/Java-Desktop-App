@@ -1,5 +1,6 @@
 package System;
 
+import System.Database.Buss_lines.Convert_toJson;
 import System.Database.Buss_lines.Xml_Line;
 import System.Objekt.*;
 
@@ -24,6 +25,7 @@ public class Main {
         testLine();
         testXmlLine();
         testXmlBuses();
+        testJson();
     }
 
     private static void testBuss(){
@@ -127,5 +129,10 @@ public class Main {
         Buses from = lineFile.readXmlBuses();
         System.out.println(from.toString());
         System.out.println(from.getInactive().toString());
+    }
+
+    private static void testJson(){
+        Convert_toJson toJson = new Convert_toJson();
+        toJson.toJson();
     }
 }
