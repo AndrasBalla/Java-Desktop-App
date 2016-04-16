@@ -3,17 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="013c457b-816d-4974-b1f2-4d3199ee78c2" name="Default" comment="">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Main/Java/UI/window.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/System/Database/Buss_lines/Convert_toJson.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/System/Database/Buss_lines/Xml_Line.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/System/Main.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/System/Objekt/Buses.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/System/Objekt/Buss.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/System/Objekt/Driver.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/System/Objekt/Line.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/System/Objekt/Passenger.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/System/Objekt/Person.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/System/Objekt/Stop.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/System/Objekt/Ticket.java" afterPath="" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/src/System/Database/Buss_lines/Convert_toJson.java" afterPath="$PROJECT_DIR$/src/Main/Java/Buss_lines/Convert_toJson.java" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/src/System/Database/Buss_lines/Xml_Line.java" afterPath="$PROJECT_DIR$/src/Main/Java/Buss_lines/Xml_Line.java" />
       <change type="MOVED" beforePath="$PROJECT_DIR$/src/System/Database/Buss_lines/garage.xml" afterPath="$PROJECT_DIR$/src/Main/Java/Buss_lines/garage.xml" />
@@ -300,7 +289,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
+              <option name="myItemId" value="Main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -324,8 +313,9 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="Main.Java" />
+      <recent name="test" />
       <recent name="Main" />
+      <recent name="Main.Java" />
       <recent name="System" />
     </key>
   </component>
@@ -756,12 +746,12 @@
       <workItem from="1460202471273" duration="6680000" />
       <workItem from="1460542288531" duration="1048000" />
       <workItem from="1460732851738" duration="9924000" />
-      <workItem from="1460806492278" duration="1725000" />
+      <workItem from="1460806492278" duration="1845000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35826000" />
+    <option name="totallyTimeSpent" value="35946000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -774,10 +764,10 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3264865" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3264865" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25586355" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25586355" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32864866" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
