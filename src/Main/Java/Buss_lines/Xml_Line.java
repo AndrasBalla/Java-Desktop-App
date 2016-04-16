@@ -1,4 +1,4 @@
-package System.Database.Buss_lines;
+package Main.Database.Buss_lines;
 
 import java.io.File;
 import javax.xml.bind.JAXBContext;
@@ -6,8 +6,8 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
-import System.Objekt.Line;
-import System.Objekt.Buses;
+import Main.java.Objekt.Line;
+import Main.java.Objekt.Buses;
 
 /**
  * Created by Spiks on 2016-04-08.

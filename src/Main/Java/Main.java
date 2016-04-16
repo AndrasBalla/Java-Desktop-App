@@ -1,8 +1,8 @@
-package System;
+package Main.java;
 
-import System.Database.Buss_lines.Convert_toJson;
-import System.Database.Buss_lines.Xml_Line;
-import System.Objekt.*;
+import Main.Database.Buss_lines.Convert_toJson;
+import Main.Database.Buss_lines.Xml_Line;
+import Main.java.Objekt.*;
 
 public class Main {
 

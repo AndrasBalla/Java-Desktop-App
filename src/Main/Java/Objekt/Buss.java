@@ -1,4 +1,4 @@
-package System.Objekt;
+package Main.java.Objekt;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;

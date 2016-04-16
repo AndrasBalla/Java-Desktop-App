@@ -1,4 +1,4 @@
-package System.Objekt;
+package Main.java.Objekt;
 
 /**
  * Created by Spiks on 2016-04-08.
