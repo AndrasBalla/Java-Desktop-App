@@ -19,3 +19,7 @@ dependencies {
     compile 'com.fasterxml.jackson.core:jackson-databind:2.0.0'
     compile 'com.fasterxml.jackson.core:jackson-annotations:2.0.0'
 }
+
+dependencies {
+    compile 'com.firebase:firebase-client-android:2.5.2+'
+}

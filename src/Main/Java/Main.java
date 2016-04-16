@@ -2,6 +2,10 @@ package Main.java;
 
 import Main.java.Buss_lines.*;
 import Main.java.Objekt.*;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 public class Main {
 
@@ -19,12 +23,15 @@ public class Main {
         }catch (Person.CheckIdException e){
             e.printStackTrace();
         }
+
         testBuss();
         testStop();
         testLine();
         testXmlLine();
         testXmlBuses();
         testJson();
+        testFirebase();
+        //populateList();
     }
 
     private static void testBuss(){
@@ -133,5 +140,69 @@ public class Main {
     private static void testJson(){
         Convert_toJson toJson = new Convert_toJson();
         toJson.toJson();
+    }
+
+    private static void testFirebase(){
+        Firebase ref = new Firebase("https://buss-database.firebaseIO.com//Drivers");
+        Database database = new Database();
+        Driver driver = new Driver();
+        driver.setDriverId("25429");
+        driver.setName("Andras Balla");
+        driver.setId("910612-1511");
+        //database.saveDriver(driver);
+        //ref.push().setValue(driver);
+        ref.child(driver.getName()).setValue(driver, new Firebase.CompletionListener() {
+            @Override
+            public void onComplete(FirebaseError firebaseError, Firebase firebase) {
+                if (firebaseError != null) {
+                    System.out.println("Data could not be saved. " + firebaseError.getMessage());
+                } else {
+                    System.out.println("Data saved successfully.");
+                }
+            }
+        });
+
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                System.out.println("Hi FireBase!");
+                System.out.println("There are " + snapshot.getChildrenCount() + " blog posts");
+                for (DataSnapshot postSnapshot: snapshot.getChildren()) {
+                    Driver post = postSnapshot.getValue(Driver.class);
+                    System.out.println(post.toString());
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                System.out.println("The read failed: " + firebaseError.getMessage());
+            }
+        });
+
+    }
+
+    private static class MyObject {
+
+        private String property1;
+        private int property2;
+
+        public MyObject(String value1, int value2) {
+            this.property1 = value1;
+            this.property2 = value2;
+        }
+
+        public String getFirstProperty() {
+            return property1;
+        }
+
+        public int getProperty2(){
+            return property2;
+        }
+
+    }
+
+    private static void populateList() {
+        Firebase ref = new Firebase("https://burning-heat-6434.firebaseIO.com//myObjects");
+        ref.push().setValue(new MyObject("myString", 14));
     }
 }

@@ -14,6 +14,8 @@ public class Driver extends Person{
     private String id;
     private String name;
 
+    public Driver(){}
+
     public String getDriverId() {
         return driverId;
     }
