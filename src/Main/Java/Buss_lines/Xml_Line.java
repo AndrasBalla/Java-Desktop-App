@@ -1,4 +1,4 @@
-package Main.Database.Buss_lines;
+package Main.java.Buss_lines;
 
 import java.io.File;
 import javax.xml.bind.JAXBContext;
@@ -13,7 +13,7 @@ import Main.java.Objekt.Buses;
  * Created by Spiks on 2016-04-08.
  */
 public class Xml_Line {
-    private static final String FILE_NAME = "src/System/Database/Buss_lines/";
+    private static final String FILE_NAME = "src/Main/java/Buss_lines/";
 
     public void writeXmlLine(Line line, String name){
         try {
