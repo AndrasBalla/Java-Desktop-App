@@ -147,20 +147,21 @@ public class Main {
         Database database = new Database();
         Driver driver = new Driver();
         driver.setDriverId("25429");
-        driver.setName("Andras Balla");
+        driver.setName("Andras Ball");
         driver.setId("910612-1511");
         //database.saveDriver(driver);
         //ref.push().setValue(driver);
-        ref.child(driver.getName()).setValue(driver, new Firebase.CompletionListener() {
+        /*ref.child(driver.getName()).setValue(driver, new Firebase.CompletionListener() {
             @Override
             public void onComplete(FirebaseError firebaseError, Firebase firebase) {
+                System.out.println("Computing");
                 if (firebaseError != null) {
                     System.out.println("Data could not be saved. " + firebaseError.getMessage());
                 } else {
                     System.out.println("Data saved successfully.");
                 }
             }
-        });
+        });*/
 
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -178,6 +179,12 @@ public class Main {
                 System.out.println("The read failed: " + firebaseError.getMessage());
             }
         });
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
+
 
     }
 
