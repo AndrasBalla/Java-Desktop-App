@@ -8,3 +8,6 @@ build/
 #Intellij
 Buss_System.iml
 .idea
+
+#Gradle
+.gradle
