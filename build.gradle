@@ -23,3 +23,7 @@ dependencies {
 dependencies {
     compile 'com.firebase:firebase-client-android:2.5.2+'
 }
+
+jar.manifest {
+    attributes "Main-Class": "Main"
+}

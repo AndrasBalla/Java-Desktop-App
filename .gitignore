@@ -3,6 +3,7 @@
 
 #Generated files
 out/
+build/
 
 #Intellij
 Buss_System.iml
