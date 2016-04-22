@@ -14,9 +14,11 @@ public class MenuBar {
         Button system = new Button();
         Button settings = new Button();
         Button help = new Button();
+
         system.setText("System");
         settings.setText("Settings");
         help.setText("Help");
+
         menu.getChildren().addAll(system,settings,help);
         menu.getStyleClass().add("custom-menu");
         menu.setId("custom-menu");

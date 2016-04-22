@@ -7,16 +7,23 @@ import javafx.scene.layout.VBox;
  * Created by Spiks on 2016-04-22.
  */
 public class NavBar {
-
+    private VerticalButtonBar bar;
+    private Button overview;
+    private Button garage;
+    private Button personnel;
+    private Button line;
+    private Button tickets;
+    private Button bok;
 
     public void init(VBox menu){
-        VerticalButtonBar bar = new VerticalButtonBar();
-        Button overview = new Button("Overview");
-        Button garage = new Button("Garage");
-        Button personnel = new Button("Personal");
-        Button line = new Button("Linjer");
-        Button tickets = new Button("Tickets");
-        Button bok = new Button("Book ticket");
+        bar = new VerticalButtonBar();
+        overview = new Button("Overview");
+        garage = new Button("Garage");
+        personnel = new Button("Personal");
+        line = new Button("Linjer");
+        tickets = new Button("Tickets");
+        bok = new Button("Book ticket");
+
         bar.addButton(garage);
         bar.addButton(personnel);
         bar.addButton(line);

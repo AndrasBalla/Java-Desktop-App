@@ -7,22 +7,23 @@ package main.java;
 import main.java.UI.MenuBar;
 import main.java.UI.NavBar;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import main.java.UI.Overview;
 
 public class Window extends Application {
     private MenuBar menuBar = new MenuBar();
     private NavBar navBar = new NavBar();
+    private Overview overview = new Overview();
+
     private VBox nav;
     private HBox menu;
     private BorderPane border;
+    private boolean running = false;
 
     public static void main(String[] args) {
         launch(args);
@@ -30,37 +31,28 @@ public class Window extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("Hello World!");
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-                System.out.println("javafx.runtime.version: " + System.getProperties().get("javafx.runtime.version"));
-            }
-        });
-
-        intiSetup(btn);
+        primaryStage.setTitle("Buss Deluxe");
+        intiSetup();
         StackPane root = new StackPane();
         root.getChildren().add(border);
-        Scene scene = new Scene(root, 500, 450);
-        //scene.getStylesheets().add("style.css");//Line for Gradle
-        scene.getStylesheets().add("main/resources/style.css");//line for run with intelj.
+        Scene scene = new Scene(root, 1250, 750);
+        scene.getStylesheets().add("style.css");//Line for Gradle
+        //scene.getStylesheets().add("main/resources/style.css");//line for run with intelj.
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-    private void intiSetup(Button btn){
+    private void intiSetup(){
         border = new BorderPane();
         nav = new VBox();
         menu = new HBox();
 
         navBar.init(nav);
         menuBar.setMenu(menu);
+
         border.setTop(menu);
         border.setLeft(nav);
-        border.setCenter(btn);
+        border.setCenter(overview.init());
         nav.getStyleClass().add("custom-border");
         nav.setId("custom-border");
         System.out.println(System.getProperty("user.dir"));
