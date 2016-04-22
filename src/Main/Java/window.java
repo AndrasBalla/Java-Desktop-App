@@ -4,6 +4,8 @@ package main.java;
  * Created by Spiks on 2016-04-16.
  */
 
+import javafx.geometry.Pos;
+import main.java.UI.DigitalClock;
 import main.java.UI.MenuBar;
 import main.java.UI.NavBar;
 import javafx.application.Application;
@@ -22,6 +24,7 @@ public class Window extends Application {
 
     private VBox nav;
     private HBox menu;
+    private HBox time;
     private BorderPane border;
     private boolean running = false;
 
@@ -36,8 +39,8 @@ public class Window extends Application {
         StackPane root = new StackPane();
         root.getChildren().add(border);
         Scene scene = new Scene(root, 1250, 750);
-        scene.getStylesheets().add("style.css");//Line for Gradle
-        //scene.getStylesheets().add("main/resources/style.css");//line for run with intelj.
+        //scene.getStylesheets().add("style.css");//Line for Gradle
+        scene.getStylesheets().add("main/resources/style.css");//line for run with intelj.
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -46,13 +49,20 @@ public class Window extends Application {
         border = new BorderPane();
         nav = new VBox();
         menu = new HBox();
+        time = new HBox();
+        DigitalClock clock = new DigitalClock();
 
         navBar.init(nav);
         menuBar.setMenu(menu);
+        time.getChildren().add(clock);
+        time.setAlignment(Pos.BOTTOM_RIGHT);
+        clock.getStyleClass().add("custom-timer");
+        clock.setId("custom-timer");
 
         border.setTop(menu);
         border.setLeft(nav);
         border.setCenter(overview.init());
+        border.setBottom(time);
         nav.getStyleClass().add("custom-border");
         nav.setId("custom-border");
         System.out.println(System.getProperty("user.dir"));

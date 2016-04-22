@@ -19,17 +19,17 @@ public class NavBar {
         bar = new VerticalButtonBar();
         overview = new Button("Overview");
         garage = new Button("Garage");
-        personnel = new Button("Personal");
-        line = new Button("Linjer");
+        personnel = new Button("Personnel");
+        line = new Button("Buss Lines");
         tickets = new Button("Tickets");
         bok = new Button("Book ticket");
 
+        bar.addButton(overview);
         bar.addButton(garage);
         bar.addButton(personnel);
         bar.addButton(line);
         bar.addButton(tickets);
         bar.addButton(bok);
-        bar.addButton(overview);
         menu.getChildren().addAll(bar);
     }
 }
