@@ -18,12 +18,11 @@ dependencies {
     compile 'com.fasterxml.jackson.core:jackson-core:2.0.0'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.0.0'
     compile 'com.fasterxml.jackson.core:jackson-annotations:2.0.0'
-}
-
-dependencies {
-    compile 'com.firebase:firebase-client-android:2.5.2+'
+    compile 'com.firebase:firebase-client-jvm:2.5.2+'
 }
 
 jar.manifest {
-    attributes "Main-Class": "Main"
+    attributes "Main-Class" : "Main.java.Main"
 }
+
+jar.from configurations.compile.collect{zipTree it}

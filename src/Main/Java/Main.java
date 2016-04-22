@@ -2,6 +2,7 @@ package Main.java;
 
 import Main.java.Buss_lines.*;
 import Main.java.Objekt.*;
+import Main.java.UI.*;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -10,6 +11,7 @@ import com.firebase.client.ValueEventListener;
 public class Main {
 
     public static void main(String[] args) {
+        window win = new window();
         Person person = new Person();
         try{
             person.setId("811218-9876");
@@ -30,7 +32,7 @@ public class Main {
         testXmlLine();
         testXmlBuses();
         testJson();
-        testFirebase();
+        //testFirebase();
         //populateList();
     }
 
@@ -147,9 +149,9 @@ public class Main {
         Database database = new Database();
         Driver driver = new Driver();
         driver.setDriverId("25429");
-        driver.setName("Andras Ball");
+        driver.setName("Andras Ballas");
         driver.setId("910612-1511");
-        //database.saveDriver(driver);
+        database.saveDriver(driver);
         //ref.push().setValue(driver);
         /*ref.child(driver.getName()).setValue(driver, new Firebase.CompletionListener() {
             @Override
