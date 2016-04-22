@@ -1,9 +1,7 @@
-package Main.java.UI;
+package main.java.UI;
 
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
-
-import org.controlsfx.control.SegmentedButton;
 
 /**
  * Created by Spiks on 2016-04-22.

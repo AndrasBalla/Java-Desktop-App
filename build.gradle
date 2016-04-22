@@ -22,7 +22,13 @@ dependencies {
 }
 
 jar.manifest {
-    attributes "Main-Class" : "Main.java.Main"
+    attributes "Main-Class" : "main.java.Window"
+}
+
+jar {
+    manifest{
+        attributes "Main-Class" : "main.java.Window"
+    }
 }
 
 jar.from configurations.compile.collect{zipTree it}

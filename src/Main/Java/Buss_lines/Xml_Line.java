@@ -1,4 +1,4 @@
-package Main.java.Buss_lines;
+package main.java.Buss_lines;
 
 import java.io.File;
 import javax.xml.bind.JAXBContext;
@@ -6,14 +6,14 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
-import Main.java.Objekt.Line;
-import Main.java.Objekt.Buses;
+import main.java.Objekt.Line;
+import main.java.Objekt.Buses;
 
 /**
  * Created by Spiks on 2016-04-08.
  */
 public class Xml_Line {
-    private static final String FILE_NAME = "src/Main/java/Buss_lines/";
+    private static final String FILE_NAME = "src/main/java/Buss_lines/";
 
     public void writeXmlLine(Line line, String name){
         try {

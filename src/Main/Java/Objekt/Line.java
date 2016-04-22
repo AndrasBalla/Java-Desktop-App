@@ -1,4 +1,4 @@
-package Main.java.Objekt;
+package main.java.Objekt;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlAttribute;

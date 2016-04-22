@@ -1,7 +1,7 @@
-package Main.java.Buss_lines;
+package main.java.Buss_lines;
 
 import com.firebase.client.Firebase;
-import Main.java.Objekt.*;
+import main.java.Objekt.*;
 
 /**
  * Created by Spiks on 2016-04-16.

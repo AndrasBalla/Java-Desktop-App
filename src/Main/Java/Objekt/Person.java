@@ -1,4 +1,4 @@
-package Main.java.Objekt;
+package main.java.Objekt;
 
 import java.util.Calendar;
 

@@ -1,0 +1,14 @@
+#custom-border {
+    -fx-border-color: #464646;
+    -fx-background-color: #a0a0a0;
+    -fx-border-width: 2px;
+    -fx-border-style: solid;
+    -fx-padding: 10;
+    -fx-spacing: 8;
+}
+
+#custom-menu {
+    -fx-background-color: #a0a0a0;
+    -fx-padding: 10;
+    -fx-spacing: 8;
+}

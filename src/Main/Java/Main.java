@@ -1,8 +1,7 @@
-package Main.java;
+package main.java;
 
-import Main.java.Buss_lines.*;
-import Main.java.Objekt.*;
-import Main.java.UI.*;
+import main.java.Buss_lines.*;
+import main.java.Objekt.*;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -11,7 +10,7 @@ import com.firebase.client.ValueEventListener;
 public class Main {
 
     public static void main(String[] args) {
-        window win = new window();
+        Window win = new Window();
         Person person = new Person();
         try{
             person.setId("811218-9876");

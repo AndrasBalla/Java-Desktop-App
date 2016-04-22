@@ -1,7 +1,10 @@
-package Main.java.UI;/**
+package main.java;
+
+/**
  * Created by Spiks on 2016-04-16.
  */
 
+import main.java.UI.NavBar;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -11,10 +14,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class window extends Application {
+public class Window extends Application {
 
     public static void main(String[] args) {
         launch(args);
@@ -34,6 +36,7 @@ public class window extends Application {
         });
 
         BorderPane border = new BorderPane();
+
         VBox nav = new VBox();
         HBox menu = new HBox();
         NavBar navBar = new NavBar();
@@ -42,10 +45,16 @@ public class window extends Application {
         border.setTop(menu);
         border.setLeft(nav);
         border.setCenter(btn);
+        nav.getStyleClass().add("custom-border");
+        nav.setId("custom-border");
+        System.out.println(System.getProperty("user.dir"));
 
         StackPane root = new StackPane();
         root.getChildren().add(border);
-        primaryStage.setScene(new Scene(root, 500, 450));
+        Scene scene = new Scene(root, 500, 450);
+        //scene.getStylesheets().add("main/resources/style.css");
+        scene.getStylesheets().add("style.css");
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 
@@ -57,6 +66,8 @@ public class window extends Application {
         settings.setText("Settings");
         help.setText("Help");
         menu.getChildren().addAll(system,settings,help);
+        menu.getStyleClass().add("custom-menu");
+        menu.setId("custom-menu");
 
         system.setOnAction(new EventHandler<ActionEvent>() {
             @Override
