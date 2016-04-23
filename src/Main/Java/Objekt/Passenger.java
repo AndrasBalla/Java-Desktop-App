@@ -3,8 +3,12 @@ package main.java.Objekt;
 /**
  * Created by Spiks on 2016-04-08.
  */
+
+/**
+ * Passenger Object inherits from Person.
+ * Ticket ticket is the passengers personal ticket.
+ */
 public class Passenger extends Person{
-    private String name;
     private Ticket ticket;
 
     public Passenger(){

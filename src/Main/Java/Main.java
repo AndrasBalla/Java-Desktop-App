@@ -28,8 +28,6 @@ public class Main {
         testBuss();
         testStop();
         testLine();
-        testXmlLine();
-        testXmlBuses();
         testJson();
         //testFirebase();
         //populateList();
@@ -90,52 +88,6 @@ public class Main {
         line.addStops(two);
         line.addStops(three);
         line.toString();
-    }
-
-    private static void testXmlLine(){
-        System.out.print("\nTesting Xml Line: \n");
-        Stop oneStop = new Stop("01","Ringen","Halmstad");
-        Stop two = new Stop("02","Central","Halmstad");
-        Stop three = new Stop("03","Tåg","Halmstad");
-        Line line = new Line();
-        line.addStops(oneStop);
-        line.addStops(two);
-        line.addStops(three);
-        line.setId("10");
-        line.toString();
-        Xml_Line lineFile = new Xml_Line();
-        lineFile.writeXmlLine(line,"line" + line.getId() + ".xml");
-        Line from = lineFile.readXmlLine("line" + line.getId() + ".xml");
-        from.toString();
-    }
-
-    private static void testXmlBuses(){
-        System.out.print("\nTesting Xml Buses: \n");
-        Driver driver = new Driver();
-        driver.setId("001");
-        driver.setName("Henrik");
-        Buss one = new Buss();
-        Buss two = new Buss();
-        Buss three = new Buss();
-        one.setDriver(driver);
-        two.setDriver(driver);
-        three.setDriver(driver);
-        one.setId("DXD868");
-        two.setId("DXD878");
-        three.setId("DXD888");
-        one.setActive(false);
-        two.setActive(true);
-        three.setActive(true);
-        System.out.println(one.toString());
-        Buses buses = new Buses();
-        buses.addBuses(one);
-        buses.addBuses(two);
-        buses.addBuses(three);
-        Xml_Line lineFile = new Xml_Line();
-        lineFile.writeXmlBuses(buses);
-        Buses from = lineFile.readXmlBuses();
-        System.out.println(from.toString());
-        System.out.println(from.getInactive().toString());
     }
 
     private static void testJson(){

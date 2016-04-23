@@ -1,14 +1,14 @@
 package main.java.Objekt;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 
 /**
  * Created by Spiks on 2016-04-08.
  */
-@XmlRootElement(name = "line")
+
+/**
+ * A Object that represents the line a buss will take.
+ */
 public class Line {
     private String id;
     private ArrayList<Stop> stops;
@@ -26,7 +26,6 @@ public class Line {
         this.buss = buss;
     }
 
-    @XmlAttribute
     public void setId(String inId){
         id = inId;
     }
@@ -39,7 +38,6 @@ public class Line {
         stops.add(stop);
     }
 
-    @XmlElement(name = "stop")
     public void setStops(ArrayList<Stop> Stops){
         this.stops = Stops;
     }

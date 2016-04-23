@@ -35,6 +35,7 @@ public class Overview {
             @Override
             public void handle(ActionEvent event) {
                 pushDataToFirebase(input.getText());
+                presentOnList(input.getText());
                 System.out.println(input.getText());
             }
         });

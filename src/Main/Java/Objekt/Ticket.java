@@ -3,6 +3,7 @@ package main.java.Objekt;
 /**
  * Created by Spiks on 2016-04-08.
  */
+//TODO:Comments and just everything else :D
 public class Ticket {
     private String id;
     private String passengerName;

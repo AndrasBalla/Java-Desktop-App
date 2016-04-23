@@ -1,14 +1,12 @@
 package main.java.Objekt;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
-
 /**
  * Created by Spiks on 2016-04-08.
  */
-@XmlRootElement(name = "stop")
-@XmlType(propOrder = {"location","name"})
+
+/**
+ * Object representing a Buss stop.
+ */
 public class Stop {
     private String id;
     private String name;
@@ -22,7 +20,6 @@ public class Stop {
 
     public Stop(){}
 
-    @XmlAttribute
     public String getId() {
         return id;
     }

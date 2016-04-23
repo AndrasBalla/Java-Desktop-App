@@ -5,18 +5,13 @@ import java.util.Calendar;
 /**
  * Created by Spiks on 2016-04-08.
  */
+
+/**
+ * Object Person not used actively by the system it is only used by Driver and Passnger as a super class.
+ */
 public class Person {
     protected String id;
     protected String name;
-    protected String age;
-
-    public String getAge() {
-        return age;
-    }
-
-    public void setAge(String age) {
-        this.age = age;
-    }
 
     public String getId(){
         return id;
@@ -35,6 +30,11 @@ public class Person {
         return name;
     }
 
+    /**
+     * Takes a String and checks if it is a valid personal Id given by the Swedish government.
+     * @param inId
+     * @throws CheckIdException
+     */
     private void checkId(String inId) throws CheckIdException{
         Calendar c = Calendar.getInstance();
         int currentYear = c.get(Calendar.YEAR);
@@ -82,6 +82,9 @@ public class Person {
         }
     }
 
+    /**
+     * Custom Exception thrown by the checkId method when a invalid id has been provided.
+     */
     public class CheckIdException extends Exception{
         public CheckIdException(String message){
             super(message);
