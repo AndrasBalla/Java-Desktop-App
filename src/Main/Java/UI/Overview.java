@@ -32,7 +32,6 @@ public class Overview {
     private Firebase ref = new Firebase("https://buss-database.firebaseIO.com//live//system");
     private Label helpText = new Label("This is the Start page for the application Buss Deluxe.\n You can save notes here simply by writing YYYY-MM-DD and your note this will stay here " +
             "on the page to serve as a reminder");
-    private VBox holder = new VBox();
 
     /**
      * Initial setup of the page.
@@ -44,8 +43,6 @@ public class Overview {
             @Override
             public void handle(ActionEvent event) {
                 pushDataToFirebase(input.getText());
-                //presentOnList(input.getText());
-                System.out.println(input.getText());
             }
         });
 
@@ -56,7 +53,7 @@ public class Overview {
         titleBox.setAlignment(Pos.CENTER);
         loadDataFromFirebase();
 
-        root.getChildren().addAll(titleBox,input,helpText,holder);
+        root.getChildren().addAll(titleBox,input,helpText);
         return root;
     }
 
@@ -69,10 +66,8 @@ public class Overview {
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                System.out.println("Loading in Post-its");
                 for (DataSnapshot postSnapshot: snapshot.getChildren()) {
                    presentOnList(postSnapshot.getKey() + ": " + postSnapshot.getValue());
-                    System.out.println(postSnapshot.getValue());
                 }
             }
 
@@ -109,7 +104,9 @@ public class Overview {
             @Override
             public void run() {
                 Label in = new Label(input);
+                VBox holder = new VBox();
                 holder.getChildren().add(in);
+                root.getChildren().add(holder);
             }
         });
     }

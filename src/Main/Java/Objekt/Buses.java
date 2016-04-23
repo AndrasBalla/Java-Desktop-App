@@ -20,27 +20,14 @@ public class Buses {
         this.buses = buses;
     }
 
-    public void addBuses(Buss buss){
+    public void addBuss(Buss buss){
         buses.add(buss);
-    }
-
-    /**
-     * Looks for a buss that is not in use.
-     * @return The first inactive buss or null.
-     */
-    public Buss getInactive(){
-        for (Buss buss: buses) {
-            if (!(buss.isActive())) {
-                return buss;
-            }
-        }
-        return null;
     }
 
     public String toString(){
         String out = "";
         for(Buss buss: buses){
-            out += buss.toString() + "\n";
+            out += buss.getId() + "\n";
         }
         return out;
     }

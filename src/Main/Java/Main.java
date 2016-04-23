@@ -39,7 +39,7 @@ public class Main {
         driver.setId("001");
         driver.setName("Henrik");
         System.out.println("Driver: " + driver.toString());
-        Buss buss = new Buss("DXD868",driver);
+        Buss buss = new Buss("101","DXD868","false");
         System.out.println(buss.toString());
         Stop oneStop = new Stop("01","Ringen","Halmstad");
         Stop twoStop = new Stop("02","Central","Halmstad");
@@ -56,11 +56,6 @@ public class Main {
         Passenger three = new Passenger();
         Passenger four = new Passenger();
         Passenger five = new Passenger();
-        buss.addPassengers(one);
-        buss.addPassengers(two);
-        buss.addPassengers(three);
-        buss.addPassengers(four);
-        buss.addPassengers(five);
         System.out.println(buss.toString());
     }
 
