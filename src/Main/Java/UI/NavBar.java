@@ -1,6 +1,9 @@
 package main.java.UI;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
 /**
@@ -19,7 +22,7 @@ public class NavBar {
     private Button tickets;
     private Button bok;
 
-    public void init(VBox menu){
+    public void init(VBox menu, BorderPane borderPane){
         bar = new VerticalButtonBar();
         overview = new Button("Overview");
         garage = new Button("Garage");
@@ -35,5 +38,21 @@ public class NavBar {
         bar.addButton(tickets);
         bar.addButton(bok);
         menu.getChildren().addAll(bar);
+
+        overview.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Overview overviewPage = new Overview();
+                borderPane.setCenter(overviewPage.init());
+            }
+        });
+
+        garage.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Garage garage = new Garage();
+                borderPane.setCenter(garage.init());
+            }
+        });
     }
 }

@@ -26,7 +26,6 @@ public class Window extends Application {
     private HBox menu;
     private HBox time;
     private BorderPane border;
-    private boolean running = false;
 
     public static void main(String[] args) {
         launch(args);
@@ -55,7 +54,7 @@ public class Window extends Application {
         time = new HBox();
         DigitalClock clock = new DigitalClock();
 
-        navBar.init(nav);
+        navBar.init(nav, border);
         menuBar.setMenu(menu);
         time.getChildren().add(clock);
         time.setAlignment(Pos.BOTTOM_RIGHT);

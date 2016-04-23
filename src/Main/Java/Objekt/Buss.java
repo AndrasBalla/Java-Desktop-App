@@ -15,6 +15,16 @@ public class Buss {
     private boolean active;
     private Driver driver;
     private final int size = 17;
+    private String regId;
+
+    public String getRegId() {
+        return regId;
+    }
+
+    public void setRegId(String regId) {
+        System.out.println("Checking id");
+        checkId(regId);
+    }
 
     public Buss(String inId, Driver driver ){
         active = false;
@@ -33,7 +43,7 @@ public class Buss {
     }
 
     public void setId(String id) {
-        checkId(id);
+        this.id = id;
     }
 
 
@@ -77,7 +87,8 @@ public class Buss {
     }
 
     public String toString(){
-        String output = "Buss Registration Number: " + id + " Driver: " + passengers.get(0) + " Passengers: ";
+        String output = "Buss Registration Number: " + regId + " The Buss is currently active: " +active+
+                " The id of this buss is: " + id + " Passengers: ";
         for (int i = 1; i < passengers.size(); i++){
             output += passengers.get(i).toString();
         }
@@ -102,7 +113,7 @@ public class Buss {
             }else if(!(Character.isDigit(numbers.charAt(0)) && Character.isDigit(numbers.charAt(1)) && Character.isDigit(numbers.charAt(2)))){
                 System.out.println("The Buss registration is invalid");
             }else {
-                id = inId;
+                regId = inId;
             }
         }
 
