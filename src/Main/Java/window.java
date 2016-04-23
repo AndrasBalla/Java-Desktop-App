@@ -45,6 +45,9 @@ public class Window extends Application {
         primaryStage.show();
     }
 
+    /**
+     * Initial Setup of the UI.
+     */
     private void intiSetup(){
         border = new BorderPane();
         nav = new VBox();

@@ -9,6 +9,9 @@ import javafx.util.Duration;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * A simple clock that is displayed in the bottom right corner of the screen.
+ */
 public class DigitalClock extends Label
 {
     private static DateTimeFormatter SHORT_TIME_FORMATTER =       DateTimeFormatter.ofPattern("HH:mm:ss");

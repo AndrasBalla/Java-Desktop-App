@@ -19,6 +19,10 @@ import javafx.scene.text.Text;
 /**
  * Created by Spiks on 2016-04-22.
  */
+
+/**
+ * This is the Main page of the Application.
+ */
 public class Overview {
     private VBox root = new VBox(10);
     private HBox titleBox = new HBox();
@@ -29,6 +33,10 @@ public class Overview {
     private Label helpText = new Label("This is the Start page for the application Buss Deluxe.\n You can save notes here simply by writing YYYY-MM-DD and your note this will stay here " +
             "on the page to serve as a reminder");
 
+    /**
+     * Initial setup of the page.
+     * @return A VBox panel with the page content.
+     */
     public VBox init(){
 
         input.setOnAction(new EventHandler<ActionEvent>() {
@@ -51,6 +59,9 @@ public class Overview {
         return root;
     }
 
+    /**
+     * Loads in the Post-it notes from the Firebase database.
+     */
     private void loadDataFromFirebase(){
 
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -71,6 +82,10 @@ public class Overview {
 
     }
 
+    /**
+     * Uploads new Post-it notes to firebase.
+     * @param input A string containing a note this needs to be YYYY-MM-DD + message.
+     */
     private void pushDataToFirebase(String input){
         String key = input.substring(0,10);
         String value = input.substring(10);
@@ -84,6 +99,10 @@ public class Overview {
         }
     }
 
+    /**
+     * Adds new content to the Page.
+     * @param input Post-it note.
+     */
     private void presentOnList(String input){
         Platform.runLater(new Runnable(){
             @Override

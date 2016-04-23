@@ -6,6 +6,10 @@ import javafx.scene.layout.VBox;
 /**
  * Created by Spiks on 2016-04-22.
  */
+
+/**
+ * The NavBar is always on the left side of the screen providing buttons that will navigate trough the application.
+ */
 public class NavBar {
     private VerticalButtonBar bar;
     private Button overview;
