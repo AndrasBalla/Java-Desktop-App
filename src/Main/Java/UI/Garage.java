@@ -7,7 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import main.java.Buss_lines.Database;
+import main.java.Buss_lines.BussDatabase;
 import main.java.Objekt.Buss;
 import main.java.Objekt.BussTable;
 
@@ -21,7 +21,7 @@ import java.util.ArrayList;
  * Garage Window used to present the busses that are registered in the system. On this screen you can view, add and remove Buss objects.
  */
 public class Garage {
-    private Database database = new Database();
+    private BussDatabase database = new BussDatabase();
     private final TableView<BussTable> table = new TableView();
     final Label label = new Label("Garage");
     private TableColumn idCol;

@@ -21,9 +21,9 @@ dependencies {
     compile 'com.firebase:firebase-client-jvm:2.5.2+'
 }
 
-jar.manifest {
+/*jar.manifest {
     attributes "Main-Class" : "main.java.Window"
-}
+}*/
 
 jar {
     manifest{

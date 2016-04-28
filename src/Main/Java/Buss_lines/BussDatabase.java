@@ -13,25 +13,11 @@ import java.util.ArrayList;
  */
 
 /**
- * Database Object that will hold all the methods used in communicating with Firebase.
+ * BussDatabase Object that will hold all the methods used in communicating with Firebase.
  */
-public class Database {
-    private Firebase refDriver = new Firebase("https://buss-database.firebaseIO.com//live//people//drivers");
+public class BussDatabase {
     private Firebase refBuss = new Firebase("https://buss-database.firebaseIO.com//live//garage");
-    //private Buses list = new Buses();
-    private ArrayList<Buss> list = new ArrayList<>();
-
-    /**
-     * Uploads the provided Driver to the database.
-     * @param driver
-     */
-    public void saveDriver(Driver driver){
-        Firebase driverRef = refDriver.child(driver.getName());
-        driverRef.child("driverId").setValue(driver.getDriverId());
-        driverRef.child("name").setValue(driver.getName());
-        driverRef.child("id").setValue(driver.getId());
-        System.out.println(driver.toString());
-    }
+    private ArrayList<Buss> bussList = new ArrayList<>();
 
     /**
      * Uploads a buss Object to Firebase.
@@ -54,7 +40,7 @@ public class Database {
             public void onDataChange(DataSnapshot snapshot) {
                 for (DataSnapshot postSnapshot: snapshot.getChildren()) {
                     Buss buss = postSnapshot.getValue(Buss.class);
-                    list.add(buss);
+                    bussList.add(buss);
                 }
             }
 
@@ -68,7 +54,7 @@ public class Database {
         } catch (InterruptedException e){
             e.printStackTrace();
         }
-        return list;
+        return bussList;
     }
 
     /**

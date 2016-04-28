@@ -92,7 +92,7 @@ public class Main {
 
     private static void testFirebase(){
         Firebase ref = new Firebase("https://buss-database.firebaseIO.com//Drivers");
-        Database database = new Database();
+        DriverDatabase database = new DriverDatabase();
         Driver driver = new Driver();
         driver.setDriverId("25429");
         driver.setName("Andras Ballas");
