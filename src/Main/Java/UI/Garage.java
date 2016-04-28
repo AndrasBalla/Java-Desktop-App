@@ -9,7 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import main.java.Buss_lines.BussDatabase;
 import main.java.Objekt.Buss;
-import main.java.Objekt.BussTable;
+import main.java.Objekt.javaFxObjects.BussTable;
 
 import java.util.ArrayList;
 

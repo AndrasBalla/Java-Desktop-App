@@ -1,10 +1,14 @@
-package main.java.UI;
+package main.java.UI.staticElements;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import main.java.UI.Drivers;
+import main.java.UI.Garage;
+import main.java.UI.Overview;
+import main.java.UI.VerticalButtonBar;
 
 /**
  * Created by Spiks on 2016-04-22.
@@ -52,6 +56,14 @@ public class NavBar {
             public void handle(ActionEvent event) {
                 Garage garage = new Garage();
                 borderPane.setCenter(garage.init());
+            }
+        });
+
+        personnel.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Drivers drivers = new Drivers();
+                borderPane.setCenter(drivers.init());
             }
         });
     }

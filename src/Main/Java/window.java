@@ -5,9 +5,9 @@ package main.java;
  */
 
 import javafx.geometry.Pos;
-import main.java.UI.DigitalClock;
-import main.java.UI.MenuBar;
-import main.java.UI.NavBar;
+import main.java.UI.staticElements.DigitalClock;
+import main.java.UI.staticElements.MenuBar;
+import main.java.UI.staticElements.NavBar;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -38,8 +38,8 @@ public class Window extends Application {
         StackPane root = new StackPane();
         root.getChildren().add(border);
         Scene scene = new Scene(root, 1250, 750);
-        scene.getStylesheets().add("style.css");//Line for Gradle
-        //scene.getStylesheets().add("main/resources/style.css");//line for run with intelj.
+        //scene.getStylesheets().add("style.css");//Line for Gradle
+        scene.getStylesheets().add("main/resources/style.css");//line for run with intelj.
         primaryStage.setScene(scene);
         primaryStage.show();
     }

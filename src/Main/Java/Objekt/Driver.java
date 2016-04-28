@@ -15,6 +15,12 @@ public class Driver extends Person{
     private String id;
     private String name;
 
+    public Driver(String driverId, String id, String name){
+        this.driverId = driverId;
+        this.id = id;
+        this.name = name;
+    }
+
     public Driver(){}
 
     public String getDriverId() {

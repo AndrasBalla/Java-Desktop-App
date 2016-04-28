@@ -1,4 +1,4 @@
-package main.java.UI;
+package main.java.UI.staticElements;
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;

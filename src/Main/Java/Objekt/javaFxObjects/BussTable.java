@@ -1,4 +1,4 @@
-package main.java.Objekt;
+package main.java.Objekt.javaFxObjects;
 
 import javafx.beans.property.SimpleStringProperty;
 
