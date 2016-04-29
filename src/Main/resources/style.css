@@ -31,7 +31,7 @@
 }
 
 
-#custom-redTitle {
+.custom-redTitle {
     -fx-font-size: 24px;
     -fx-fill: #B22222;
     -fx-font-weight: bold;

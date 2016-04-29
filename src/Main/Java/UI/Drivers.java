@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class Drivers {
     private DriverDatabase database = new DriverDatabase();
     private final TableView<DriverTable> table = new TableView();
-    final Label label = new Label("Drivers");
+    private Label label = new Label("Drivers");
     private TableColumn driverId;
     private TableColumn id;
     private TableColumn name;
@@ -73,11 +73,14 @@ public class Drivers {
 
     /**
      * Adds 3 TextFields one for each value and then adds a Add and remove button.
+     * Also holds two text fields to provide feedback to the user when providing bad input.
      */
     private void setupAddButtons(){
         final Text warn = new Text("Invalid input! Please try again");
         warn.getStyleClass().add("custom-redTitle");
-        warn.setId("custom-redTitle");
+
+        final Text duplicate = new Text("Duplicate input! Please try again");
+        duplicate.getStyleClass().add("custom-redTitle");
 
         final TextField addDriverId = new TextField();
         addDriverId.setPromptText("Driver Id");
@@ -93,28 +96,35 @@ public class Drivers {
 
         Button addButton = new Button("Add");
         addButton.setOnAction((event) -> {
-            if (checkInput(addDriverId.getText(),addName.getText(),addId.getText())){
+            if (checkInput(addDriverId.getText(),addName.getText(),addId.getText()) && checkForDuplicates(addId.getText(),addDriverId.getText(),addName.getText())){
                 data.add(new DriverTable(
                         addDriverId.getText(),
                         addId.getText(),
                         addName.getText()));
                 database.saveDriver(new Driver(addDriverId.getText(),addId.getText(),addName.getText()));
-                if (hb.getChildren().contains(warn)){
-                    hb.getChildren().remove(warn);
-                }
+
+                hb.getChildren().remove(warn);
                 addDriverId.clear();
                 addId.clear();
                 addName.clear();
+            }else if (!(checkInput(addDriverId.getText(),addName.getText(),addId.getText()))){
+                hb.getChildren().remove(duplicate);
+                if (!(hb.getChildren().contains(warn))){
+                    hb.getChildren().add(warn);
+                }
             }else {
-                hb.getChildren().add(warn);
+                hb.getChildren().remove(warn);
+                if (!(hb.getChildren().contains(duplicate))){
+                    hb.getChildren().add(duplicate);
+                }
             }
         });
 
         Button removeButton = new Button("Remove");
         removeButton.setOnAction((event) -> {
             for (int i = 0; i < data.size(); i++){
-                if(data.get(i).getDriverId().toString().equals(addDriverId.getText())){
-                    database.deleteDriver(data.get(i).getName().toString());
+                if(data.get(i).getDriverId().equals(addDriverId.getText())){
+                    database.deleteDriver(data.get(i).getName());
                     data.remove(i);
                 }
             }
@@ -123,6 +133,13 @@ public class Drivers {
         hb.getChildren().addAll(addDriverId, addId, addName, addButton, removeButton);
     }
 
+    /**
+     * Checks the validity of the user input.
+     * @param driverId A string with 5 digits.
+     * @param name A string containing a name.
+     * @param id A string with a swedish personal id
+     * @return True if all tests pass else false.
+     */
     private boolean checkInput(String driverId, String name, String id){
         Driver checkId = new Driver();
         boolean check = false;
@@ -140,5 +157,19 @@ public class Drivers {
             check = true;
         }
         return check;
+    }
+
+    /**
+     * Checks the user input for duplicates in the database.
+     * @return true if no matches are found else false.
+     */
+    private boolean checkForDuplicates(String id, String driverId, String name){
+        ArrayList<Driver> list = database.getDriverList();
+        for (int i = 0; i < list.size(); i++){
+            if (list.get(i).getId().equals(id) || list.get(i).getDriverId().equals(driverId) || list.get(i).getName().equals(name)){
+                return false;
+            }
+        }
+        return true;
     }
 }

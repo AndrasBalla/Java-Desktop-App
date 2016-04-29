@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import main.java.Buss_lines.BussDatabase;
 import main.java.Objekt.Buss;
 import main.java.Objekt.javaFxObjects.BussTable;
@@ -29,6 +30,7 @@ public class Garage {
     private TableColumn regCol;
     private HBox hb = new HBox();
     private final ObservableList<BussTable> data = FXCollections.observableArrayList();
+    private ArrayList<Buss> list;
 
     /**
      * Initial Setup of the Garage window.
@@ -76,7 +78,7 @@ public class Garage {
      * Loads in information from firebase to populate the Table.
      */
     private void getList(){
-        ArrayList<Buss> list = database.getBuss();
+        list = database.getBuss();
         for (int i = 0; i < list.size(); i++){
             data.add(new BussTable(list.get(i).getId(),list.get(i).getRegId(),list.get(i).getActive() + ""));
         }
@@ -84,8 +86,15 @@ public class Garage {
 
     /**
      * Adds 3 TextFields one for each value and then adds a Add and remove button.
+     * Also holds two text fields to provide feedback to the user when providing bad input.
      */
     private void setupAddButtons(){
+        final Text warn = new Text("Invalid input! Please try again");
+        warn.getStyleClass().add("custom-redTitle");
+
+        final Text duplicate = new Text("Duplicate input! Please try again");
+        duplicate.getStyleClass().add("custom-redTitle");
+
         final TextField addId = new TextField();
         addId.setPromptText("Buss Id");
         addId.setMaxWidth(idCol.getPrefWidth());
@@ -94,20 +103,40 @@ public class Garage {
         addActive.setPromptText("Active");
         addActive.setMaxWidth(activeCol.getPrefWidth());
 
+        final ComboBox comboBox = new ComboBox();
+        comboBox.getItems().addAll("true","false");
+        comboBox.setValue("false");
+
         final TextField addRegId = new TextField();
         addRegId.setPromptText("Reg number");
         addRegId.setMaxWidth(regCol.getPrefWidth());
 
         Button addButton = new Button("Add");
         addButton.setOnAction((event) -> {
-            data.add(new BussTable(
-                    addId.getText(),
-                    addRegId.getText().toUpperCase(),
-                    addActive.getText()));
-            database.saveBuss(new Buss(addId.getText(),addRegId.getText().toUpperCase(),addActive.getText().toLowerCase()));
-            addId.clear();
-            addActive.clear();
-            addRegId.clear();
+            if (checkInput(addId.getText(),addRegId.getText(),comboBox.getValue().toString()) && checkForDuplicates(addId.getText(),addRegId.getText().toUpperCase())){
+                data.add(new BussTable(
+                        addId.getText(),
+                        addRegId.getText().toUpperCase(),
+                        comboBox.getValue().toString()));
+                database.saveBuss(new Buss(addId.getText(),addRegId.getText().toUpperCase(),comboBox.getValue().toString()));
+
+                hb.getChildren().remove(warn);
+                hb.getChildren().remove(duplicate);
+                addId.clear();
+                addActive.clear();
+                addRegId.clear();
+            }else if (!(checkInput(addId.getText(),addRegId.getText(),comboBox.getValue().toString()))){
+                hb.getChildren().remove(duplicate);
+                if (!(hb.getChildren().contains(warn))){
+                    hb.getChildren().add(warn);
+                }
+            }else {
+                hb.getChildren().remove(warn);
+                if (!(hb.getChildren().contains(duplicate))){
+                    hb.getChildren().add(duplicate);
+                }
+            }
+
         });
 
         Button removeButton = new Button("Remove");
@@ -120,20 +149,51 @@ public class Garage {
             }
         });
 
-        hb.getChildren().addAll(addId, addActive, addRegId, addButton, removeButton);
+        hb.getChildren().addAll(addId, comboBox, addRegId, addButton, removeButton);
     }
 
-    private boolean checkInput(String driverId, String name, String id){
+    /**
+     * Checks the input values provided by the user.
+     * @param id String id for a Buss. This has to be three digits.
+     * @param regId Buss registration number this folows the swedish standard XXX000.
+     * @param active Boolean value which shows if the buss is active or not.
+     * @return Boolean value true if all tests pass else false.
+     */
+    private boolean checkInput(String id, String regId, String active){
         boolean check = false;
-        if (driverId.length() == 5 && name.length() > 0 && id.length() == 11){
+        if (id.length() == 3 && regId.length() == 6 && active != null){
             check = true;
+        }else {
+            return false;
         }
-        for (int i = 0; i < driverId.length(); i++){
-            if(!(Character.isDigit(driverId.charAt(i)))){
+        for (int i = 0; i < id.length(); i++){
+            if(!(Character.isDigit(id.charAt(i)))){
                 return false;
             }
         }
+        if (Character.isLetter(regId.charAt(0)) && Character.isLetter(regId.charAt(1))&& Character.isLetter(regId.charAt(2)) &&
+                Character.isDigit(regId.charAt(3)) && Character.isDigit(regId.charAt(4)) && Character.isDigit(regId.charAt(5))){
+            check = true;
+        }else {
+            check = false;
+        }
         return check;
+    }
+
+    /**
+     * Checks the input provided by the user for duplicate elements in the database.
+     * @param id Buss id of three digits no two buses can have the same id.
+     * @param regId Registration number of a buss these are always unique.
+     * @return Boolean value true if no matches found else false.
+     */
+    private boolean checkForDuplicates(String id, String regId){
+        list = database.getBuss();
+        for (int i = 0; i < list.size(); i++){
+            if (list.get(i).getId().equals(id) || list.get(i).getRegId().equals(regId)){
+                return false;
+            }
+        }
+        return true;
     }
 
 }

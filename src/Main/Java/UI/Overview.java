@@ -28,7 +28,6 @@ public class Overview {
     private HBox titleBox = new HBox();
     private Text title = new Text("Buss Deluxe");
     private TextField input = new TextField();
-    private HBox time = new HBox();
     private Firebase ref = new Firebase("https://buss-database.firebaseIO.com//live//system");
     private Label helpText = new Label("This is the Start page for the application Buss Deluxe.\n You can save notes here simply by writing YYYY-MM-DD and your note this will stay here " +
             "on the page to serve as a reminder");
