@@ -51,7 +51,7 @@ public class NavBar {
         garage.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                GarageImproved garage = new GarageImproved();
+                Garage garage = new Garage();
                 borderPane.setCenter(garage.init());
             }
         });

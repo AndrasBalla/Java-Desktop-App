@@ -15,7 +15,7 @@ import main.java.Objekt.javaFxObjects.BussTable;
 /**
  * Created by Spiks on 2016-04-29.
  */
-public class GarageImproved {
+public class Garage {
     private BussDatabase database = new BussDatabase();
     private final TableView<BussTable> table = new TableView();
     final Label label = new Label("Garage");
