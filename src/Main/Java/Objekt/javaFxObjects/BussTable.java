@@ -61,4 +61,11 @@ public class BussTable {
     public void setId(String id) {
         this.id.set(id);
     }
+
+    public boolean equals(BussTable buss){
+        if (this.id.equals(buss.getId()) || this.regId.equals(buss.getRegId())){
+            return true;
+        }
+        return false;
+    }
 }

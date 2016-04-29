@@ -5,10 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import main.java.UI.Drivers;
-import main.java.UI.Garage;
-import main.java.UI.Overview;
-import main.java.UI.VerticalButtonBar;
+import main.java.UI.*;
 
 /**
  * Created by Spiks on 2016-04-22.
@@ -54,7 +51,7 @@ public class NavBar {
         garage.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Garage garage = new Garage();
+                GarageImproved garage = new GarageImproved();
                 borderPane.setCenter(garage.init());
             }
         });
