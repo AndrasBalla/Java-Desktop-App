@@ -12,18 +12,9 @@ public class Main {
     public static void main(String[] args) {
         Window win = new Window();
         Person person = new Person();
-        try{
-            person.setId("811218-9876");
-        }catch (Person.CheckIdException e){
-            e.printStackTrace();
-        }
-
+        person.setId("811218-9876");
         Passenger passenger = new Passenger();
-        try{
-            passenger.setId("811218-9876");
-        }catch (Person.CheckIdException e){
-            e.printStackTrace();
-        }
+        passenger.setId("811218-9876");
 
         testBuss();
         testStop();

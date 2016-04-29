@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import main.java.Buss_lines.DriverDatabase;
 import main.java.Objekt.Driver;
 import main.java.Objekt.javaFxObjects.DriverTable;
@@ -48,6 +49,7 @@ public class Drivers {
 
         table.setItems(data);
         table.setPrefWidth(250);
+        table.setMinHeight(550);
         table.getColumns().addAll(driverId, id, name);
         hb.setSpacing(5);
         final VBox vbox = new VBox();
@@ -73,6 +75,10 @@ public class Drivers {
      * Adds 3 TextFields one for each value and then adds a Add and remove button.
      */
     private void setupAddButtons(){
+        final Text warn = new Text("Invalid input! Please try again");
+        warn.getStyleClass().add("custom-redTitle");
+        warn.setId("custom-redTitle");
+
         final TextField addDriverId = new TextField();
         addDriverId.setPromptText("Driver Id");
         addDriverId.setMinWidth(driverId.getPrefWidth());
@@ -87,14 +93,21 @@ public class Drivers {
 
         Button addButton = new Button("Add");
         addButton.setOnAction((event) -> {
-            data.add(new DriverTable(
-                    addDriverId.getText(),
-                    addName.getText(),
-                    addId.getText()));
-            database.saveDriver(new Driver(addDriverId.getText(),addId.getText(),addName.getText()));
-            addDriverId.clear();
-            addId.clear();
-            addName.clear();
+            if (checkInput(addDriverId.getText(),addName.getText(),addId.getText())){
+                data.add(new DriverTable(
+                        addDriverId.getText(),
+                        addId.getText(),
+                        addName.getText()));
+                database.saveDriver(new Driver(addDriverId.getText(),addId.getText(),addName.getText()));
+                if (hb.getChildren().contains(warn)){
+                    hb.getChildren().remove(warn);
+                }
+                addDriverId.clear();
+                addId.clear();
+                addName.clear();
+            }else {
+                hb.getChildren().add(warn);
+            }
         });
 
         Button removeButton = new Button("Remove");
@@ -108,5 +121,24 @@ public class Drivers {
         });
 
         hb.getChildren().addAll(addDriverId, addId, addName, addButton, removeButton);
+    }
+
+    private boolean checkInput(String driverId, String name, String id){
+        Driver checkId = new Driver();
+        boolean check = false;
+        if (driverId.length() == 5 && name.length() > 0 && id.length() == 11){
+            check = true;
+        }else {
+            return false;
+        }
+        for (int i = 0; i < driverId.length(); i++){
+            if(!(Character.isDigit(driverId.charAt(i)))){
+                return false;
+            }
+        }
+        if (checkId.checkId(id)){
+            check = true;
+        }
+        return check;
     }
 }

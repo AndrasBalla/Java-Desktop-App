@@ -17,9 +17,10 @@ public class Person {
         return id;
     }
 
-    public void setId(String inId) throws CheckIdException{
-        checkId(inId);
-        id = inId;
+    public void setId(String inId) {
+        if (checkId(inId)){
+            id = inId;
+        }
     }
 
     public void setName(String inName){
@@ -33,9 +34,8 @@ public class Person {
     /**
      * Takes a String and checks if it is a valid personal Id given by the Swedish government.
      * @param inId
-     * @throws CheckIdException
      */
-    private void checkId(String inId) throws CheckIdException{
+    public boolean checkId(String inId) {
         Calendar c = Calendar.getInstance();
         int currentYear = c.get(Calendar.YEAR);
         String controlTwo = "";
@@ -57,7 +57,7 @@ public class Person {
         }
 
         if((10 - (control % 10) != Integer.parseInt(inId.substring(10)))){
-            throw new CheckIdException("Ogiltig Personnummer");
+            return false;
         }else if(inId.length() == 11){
             int year = Integer.parseInt(inId.substring(0,2));
             int month = Integer.parseInt(inId.substring(2,4));
@@ -65,29 +65,21 @@ public class Person {
             System.out.println("Year: " + year + " month: " + month + " day: " + day + " Current year: " + currentYear);
             if(inId.charAt(6) == '-'){
                 if (year >= currentYear - 2000 && year <= 99 && month > 0 && month <= 12 && day > 0 && day <= 30){
-                    id = inId;
+                    return true;
                 }else {
-                    throw new CheckIdException("Ogiltig Personnummer");
+                    return false;
                 }
             }else if (inId.charAt(6) == '+'){
                 if(year <= currentYear - 2000 && year >= 0 && month > 0 && month <= 12 && day > 0 && day <= 30){
                     System.out.println("100+");
-                    id = inId;
+                    return true;
                 }else {
-                    throw new CheckIdException("Ogiltig Personnummer");
+                    return false;
                 }
             }
         }else {
-            throw new CheckIdException("Ogiltig Personnummer");
+            return false;
         }
-    }
-
-    /**
-     * Custom Exception thrown by the checkId method when a invalid id has been provided.
-     */
-    public class CheckIdException extends Exception{
-        public CheckIdException(String message){
-            super(message);
-        }
+        return false;
     }
 }

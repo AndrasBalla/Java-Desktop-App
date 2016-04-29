@@ -61,6 +61,7 @@ public class Garage {
 
         table.setItems(data);
         table.setPrefWidth(250);
+        table.setMinHeight(550);
         table.getColumns().addAll(idCol, activeCol, regCol);
         hb.setSpacing(5);
         final VBox vbox = new VBox();
@@ -120,6 +121,19 @@ public class Garage {
         });
 
         hb.getChildren().addAll(addId, addActive, addRegId, addButton, removeButton);
+    }
+
+    private boolean checkInput(String driverId, String name, String id){
+        boolean check = false;
+        if (driverId.length() == 5 && name.length() > 0 && id.length() == 11){
+            check = true;
+        }
+        for (int i = 0; i < driverId.length(); i++){
+            if(!(Character.isDigit(driverId.charAt(i)))){
+                return false;
+            }
+        }
+        return check;
     }
 
 }

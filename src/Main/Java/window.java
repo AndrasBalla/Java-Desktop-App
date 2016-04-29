@@ -21,10 +21,6 @@ public class Window extends Application {
     private MenuBar menuBar = new MenuBar();
     private NavBar navBar = new NavBar();
     private Overview overview = new Overview();
-
-    private VBox nav;
-    private HBox menu;
-    private HBox time;
     private BorderPane border;
 
     public static void main(String[] args) {
@@ -49,15 +45,17 @@ public class Window extends Application {
      */
     private void intiSetup(){
         border = new BorderPane();
-        nav = new VBox();
-        menu = new HBox();
-        time = new HBox();
+        VBox nav = new VBox();
+        HBox menu = new HBox();
+        HBox time = new HBox();
         DigitalClock clock = new DigitalClock();
 
         navBar.init(nav, border);
         menuBar.setMenu(menu);
         time.getChildren().add(clock);
         time.setAlignment(Pos.BOTTOM_RIGHT);
+        time.getStyleClass().add("custom-footer");
+        time.setId("custom-footer");
         clock.getStyleClass().add("custom-timer");
         clock.setId("custom-timer");
 

@@ -1,7 +1,7 @@
 #custom-border {
     -fx-border-color: #464646;
     -fx-background-color: #a0a0a0;
-    -fx-border-width: 2px;
+    -fx-border-width: 0 2 0 2;
     -fx-border-style: solid;
     -fx-padding: 10;
     -fx-spacing: 8;
@@ -11,6 +11,9 @@
     -fx-background-color: #a0a0a0;
     -fx-padding: 10;
     -fx-spacing: 8;
+    -fx-border-width: 2 2 2 2;
+    -fx-border-style: solid;
+    -fx-border-color: #464646;
 }
 
 .label {
@@ -28,12 +31,12 @@
 }
 
 
-/*#custom-title {
-    -fx-font-size: 32px;
-    -fx-fill: FIREBRICK;
+#custom-redTitle {
+    -fx-font-size: 24px;
+    -fx-fill: #B22222;
     -fx-font-weight: bold;
     -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
-}*/
+}
 
 .button {
     -fx-text-fill: white;
@@ -50,6 +53,13 @@
 #custom-timer {
     -fx-font-size: 24px;
     -fx-font-family: "Arial Narrow";
-    -fx-text-fill: rgba(17, 18, 190, 0.84);
+    -fx-text-fill: rgba(42, 80, 88, 0.84);
     -fx-font-weight: bold;
+}
+
+#custom-footer {
+    -fx-background-color: #a0a0a0;
+    -fx-border-width: 2 2 2 2;
+    -fx-border-style: solid;
+    -fx-border-color: #464646;
 }

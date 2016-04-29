@@ -85,8 +85,6 @@ public class Overview {
     private void pushDataToFirebase(String input){
         String key = input.substring(0,10);
         String value = input.substring(10);
-        System.out.println(key);
-        System.out.println(value.trim());
         ref.child(key).setValue(value);
         try {
             Thread.sleep(4000);
