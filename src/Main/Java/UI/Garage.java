@@ -8,6 +8,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+
 import main.java.Buss_lines.BussDatabase;
 import main.java.Objekt.Buss;
 import main.java.Objekt.javaFxObjects.BussTable;
@@ -18,12 +19,12 @@ import main.java.Objekt.javaFxObjects.BussTable;
 public class Garage {
     private BussDatabase database = new BussDatabase();
     private final TableView<BussTable> table = new TableView();
-    final Label label = new Label("Garage");
+    private Label label = new Label("Garage");
     private TableColumn idCol;
     private TableColumn activeCol;
     private TableColumn regCol;
     private HBox hb = new HBox();
-    private final ObservableList<BussTable> data = FXCollections.observableArrayList();
+    private ObservableList<BussTable> data = FXCollections.observableArrayList();
 
     /**
      * Initial Setup of the Garage window.
@@ -32,7 +33,7 @@ public class Garage {
      */
     public VBox init(){
         tableSetup();
-        database.updateBuss(data,table);
+        database.updateBuss(data);
         setupButtons();
 
         hb.setSpacing(5);
@@ -87,7 +88,6 @@ public class Garage {
 
         final ComboBox comboBox = new ComboBox();
         comboBox.getItems().addAll("true","false");
-        comboBox.setValue("false");
 
         final TextField addRegId = new TextField();
         addRegId.setPromptText("Reg number");
@@ -104,18 +104,13 @@ public class Garage {
     private void setupAddButton(TextField addId, TextField addRegId, ComboBox comboBox, Text warn, Text duplicate){
         Button addButton = new Button("Add");
         addButton.setOnAction((event) -> {
-            if (checkInput(addId.getText(),addRegId.getText(),comboBox.getValue().toString()) && checkForDuplicates(addId.getText(),addRegId.getText().toUpperCase())){
-                data.add(new BussTable(
-                        addId.getText(),
-                        addRegId.getText().toUpperCase(),
-                        comboBox.getValue().toString()));
+            if (checkInput(addId.getText(),addRegId.getText(),comboBox) && checkForDuplicates(addId.getText(),addRegId.getText().toUpperCase())){
                 database.saveBuss(new Buss(addId.getText(),addRegId.getText().toUpperCase(),comboBox.getValue().toString()));
-
                 hb.getChildren().remove(warn);
                 hb.getChildren().remove(duplicate);
                 addId.clear();
                 addRegId.clear();
-            }else if (!(checkInput(addId.getText(),addRegId.getText(),comboBox.getValue().toString()))){
+            }else if (!(checkInput(addId.getText(),addRegId.getText(),comboBox))){
                 hb.getChildren().remove(duplicate);
                 if (!(hb.getChildren().contains(warn))){
                     hb.getChildren().add(warn);
@@ -138,16 +133,16 @@ public class Garage {
                 if(data.get(i).getId().equals(addId.getText())){
                     database.deleteBuss(data.get(i).getId());
                     data.remove(i);
+                    addId.clear();
                 }
             }
         });
-        addId.clear();
         hb.getChildren().add(removeButton);
     }
 
-    private boolean checkInput(String id, String regId, String active){
+    private boolean checkInput(String id, String regId, ComboBox active){
         boolean check = false;
-        if (id.length() == 3 && regId.length() == 6 && active != null){
+        if (id.length() == 3 && regId.length() == 6 && active.getValue() != null){
             check = true;
         }else {
             return false;

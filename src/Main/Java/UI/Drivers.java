@@ -164,9 +164,8 @@ public class Drivers {
      * @return true if no matches are found else false.
      */
     private boolean checkForDuplicates(String id, String driverId, String name){
-        ArrayList<Driver> list = database.getDriverList();
-        for (int i = 0; i < list.size(); i++){
-            if (list.get(i).getId().equals(id) || list.get(i).getDriverId().equals(driverId) || list.get(i).getName().equals(name)){
+        for (int i = 0; i < data.size(); i++){
+            if (data.get(i).getId().equals(id) || data.get(i).getDriverId().equals(driverId) || data.get(i).getName().equals(name)){
                 return false;
             }
         }

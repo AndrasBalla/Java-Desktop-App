@@ -65,7 +65,6 @@ public class Window extends Application {
         border.setBottom(time);
         nav.getStyleClass().add("custom-border");
         nav.setId("custom-border");
-        System.out.println(System.getProperty("user.dir"));
     }
 
 }

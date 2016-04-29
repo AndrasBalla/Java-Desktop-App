@@ -2,7 +2,6 @@ package main.java.Buss_lines;
 
 import com.firebase.client.*;
 import javafx.collections.ObservableList;
-import javafx.scene.control.TableView;
 import main.java.Objekt.*;
 import main.java.Objekt.javaFxObjects.BussTable;
 
@@ -31,7 +30,7 @@ public class BussDatabase {
     }
 
     /**
-     * Gets all the busses from firebase and stores them in a array. UNUSED at the moment.
+     * Gets all the buses from firebase and stores them in a array. UNUSED at the moment.
      * @return ArrayList<Buss>.
      */
     public ArrayList<Buss> getBuss(ObservableList<BussTable> data){
@@ -63,44 +62,53 @@ public class BussDatabase {
 
     /**
      * Removes a buss from firebase.
-     * @param id
+     * @param id String id of the Buss to be removed.
      */
     public void deleteBuss(String id){
         Firebase remove = new Firebase("https://buss-database.firebaseIO.com//live//garage//" + id);
         remove.setValue(null);
     }
 
-    public void updateBuss(ObservableList<BussTable> data, TableView<BussTable> table){
+    public void updateBuss(ObservableList<BussTable> data){
+
         refBuss.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                System.out.println("Child added: " + dataSnapshot.getKey());
+                System.out.println(dataSnapshot);
                 Buss buss = dataSnapshot.getValue(Buss.class);
-                if (buss.getId() != null){
-                    data.add(new BussTable(buss.getId(),buss.getRegId(),buss.getActive() + ""));
-                }
-                System.out.println("Getting Child added info:" + dataSnapshot.getValue());
-
+                data.add(new BussTable(dataSnapshot.getKey(),buss.getRegId(),buss.getActive() + ""));
             }
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
+                Buss basicBuss = dataSnapshot.getValue(Buss.class);
+                basicBuss.setId(dataSnapshot.getKey());
+                for (BussTable buss: data){
+                    if (buss.getId().equals(dataSnapshot.getKey())){
+                        System.out.println("Found it");
+                        buss.setId(dataSnapshot.getKey());
+                        buss.setActive(basicBuss.getActive());
+                        buss.setRegId(basicBuss.getRegId());
+                    }
+                }
+                System.out.println("Child changed: " + dataSnapshot);
             }
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-
+                for (int i = 0; i < data.size(); i++) {
+                    if (data.get(i).getId().equals(dataSnapshot.getKey())) {
+                        data.remove(i);
+                    }
+                }
             }
 
             @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
 
             @Override
-            public void onCancelled(FirebaseError firebaseError) {
-
-            }
+            public void onCancelled(FirebaseError firebaseError) {}
         });
     }
 }
