@@ -1,36 +1,29 @@
 package main.java.UI.staticElements;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import main.java.UI.*;
 
 /**
  * Created by Spiks on 2016-04-22.
+ * In the project Buss_System
  */
 
 /**
  * The NavBar is always on the left side of the screen providing buttons that will navigate trough the application.
  */
 public class NavBar {
-    private VerticalButtonBar bar;
-    private Button overview;
-    private Button garage;
-    private Button personnel;
-    private Button line;
-    private Button tickets;
-    private Button bok;
 
     public void init(VBox menu, BorderPane borderPane){
-        bar = new VerticalButtonBar();
-        overview = new Button("Overview");
-        garage = new Button("Garage");
-        personnel = new Button("Personnel");
-        line = new Button("Buss Lines");
-        tickets = new Button("Tickets");
-        bok = new Button("Book ticket");
+        VerticalButtonBar bar = new VerticalButtonBar();
+        Button overview = new Button("Overview");
+        Button garage = new Button("Garage");
+        Button personnel = new Button("Personnel");
+        Button line = new Button("Buss Lines");
+        Button tickets = new Button("Tickets");
+        Button bok = new Button("Book ticket");
 
         bar.addButton(overview);
         bar.addButton(garage);
@@ -40,28 +33,32 @@ public class NavBar {
         bar.addButton(bok);
         menu.getChildren().addAll(bar);
 
-        overview.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                Overview overviewPage = new Overview();
-                borderPane.setCenter(overviewPage.init());
-            }
+        overview.setOnAction((event) -> {
+            Overview overviewPage = new Overview();
+            borderPane.setCenter(overviewPage.init());
         });
 
-        garage.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                Garage garage = new Garage();
-                borderPane.setCenter(garage.init());
-            }
+        garage.setOnAction((event) -> {
+            Garage garagePane = new Garage();
+            borderPane.setCenter(garagePane.init());
         });
 
-        personnel.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                Drivers drivers = new Drivers();
-                borderPane.setCenter(drivers.init());
-            }
+        personnel.setOnAction(event -> {
+            Drivers drivers = new Drivers();
+            borderPane.setCenter(drivers.init());
+        });
+
+        line.setOnAction(event -> {
+            BussLines lines = new BussLines();
+            borderPane.setCenter(lines.init());
+        });
+
+        tickets.setOnAction((event) -> {
+            borderPane.setCenter(new Text("Under Construction"));
+        });
+
+        bok.setOnAction(event -> {
+            borderPane.setCenter(new Text("Under Construction"));
         });
     }
 }

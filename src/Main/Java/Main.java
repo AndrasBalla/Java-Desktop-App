@@ -15,16 +15,15 @@ public class Main {
         person.setId("811218-9876");
         Passenger passenger = new Passenger();
         passenger.setId("811218-9876");
-
-        testBuss();
+        /*testBuss();
         testStop();
         testLine();
-        testJson();
+        testJson();*/
         //testFirebase();
         //populateList();
     }
 
-    private static void testBuss(){
+    /*private static void testBuss(){
         System.out.print("\nTesting Buss: \n");
         Driver driver = new Driver();
         driver.setId("001");
@@ -48,7 +47,7 @@ public class Main {
         Passenger four = new Passenger();
         Passenger five = new Passenger();
         System.out.println(buss.toString());
-    }
+    }*/
 
     private static void testStop(){
         Stop stop = new Stop("01","Sjukhuset","Halmstad");
@@ -64,7 +63,7 @@ public class Main {
         System.out.println(one.toString());
     }
 
-    private static void testLine(){
+    /*private static void testLine(){
         System.out.print("\nTesting Line: \n");
         Stop oneStop = new Stop("01","Ringen","Halmstad");
         Stop two = new Stop("02","Central","Halmstad");
@@ -74,7 +73,7 @@ public class Main {
         line.addStops(two);
         line.addStops(three);
         line.toString();
-    }
+    }*/
 
     private static void testJson(){
         Convert_toJson toJson = new Convert_toJson();

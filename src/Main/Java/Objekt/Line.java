@@ -1,9 +1,11 @@
 package main.java.Objekt;
 
 import java.util.ArrayList;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Created by Spiks on 2016-04-08.
+ * In the project Buss_System
  */
 
 /**
@@ -11,12 +13,10 @@ import java.util.ArrayList;
  */
 public class Line {
     private String id;
-    private ArrayList<Stop> stops;
+    private ArrayList<Stop> stops = new ArrayList<>();
     private Buss buss;
 
-    public Line (){
-        stops = new ArrayList<Stop>();
-    }
+    public Line (){}
 
     public Buss getBuss() {
         return buss;
@@ -50,6 +50,6 @@ public class Line {
         for (int i = 0; i < stops.size(); i++){
             System.out.println("Buss Stop: " + stops.get(i).toString());
         }
-        return "You got it";
+        return "I got this";
     }
 }

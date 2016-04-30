@@ -12,6 +12,7 @@ public class Ticket {
     private Stop destination;
     private Stop source;
     private String purchaseDate;
+    private String FareDate;
 
     public String getFareDate() {
         return FareDate;
@@ -28,8 +29,6 @@ public class Ticket {
     public void setPurchaseDate(String purchaseDate) {
         this.purchaseDate = purchaseDate;
     }
-
-    private String FareDate;
 
     public Line getLine() {
         return line;

@@ -68,8 +68,6 @@ public class DriverDatabase {
         refDriver.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                System.out.println("Child added: " + dataSnapshot.getKey());
-                System.out.println(dataSnapshot);
                 Driver driver = dataSnapshot.getValue(Driver.class);
                 data.add(new DriverTable(driver.getDriverId(),driver.getId(),dataSnapshot.getKey()));
             }
@@ -80,7 +78,6 @@ public class DriverDatabase {
                 basicDriver.setName(dataSnapshot.getKey());
                 for (DriverTable driver: data){
                     if (driver.getName().equals(dataSnapshot.getKey())){
-                        System.out.println("Found it");
                         driver.setId(basicDriver.getId());
                         driver.setName(dataSnapshot.getKey());
                         driver.setDriverId(basicDriver.getDriverId());

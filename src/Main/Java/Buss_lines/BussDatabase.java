@@ -7,6 +7,7 @@ import main.java.Objekt.javaFxObjects.BussTable;
 
 /**
  * Created by Spiks on 2016-04-16.
+ * In the project Buss_System
  */
 
 /**
@@ -44,8 +45,6 @@ public class BussDatabase {
         refBuss.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                System.out.println("Child added: " + dataSnapshot.getKey());
-                System.out.println(dataSnapshot);
                 Buss buss = dataSnapshot.getValue(Buss.class);
                 data.add(new BussTable(dataSnapshot.getKey(),buss.getRegId(),buss.getActive() + ""));
             }
@@ -56,7 +55,6 @@ public class BussDatabase {
                 basicBuss.setId(dataSnapshot.getKey());
                 for (BussTable buss: data){
                     if (buss.getId().equals(dataSnapshot.getKey())){
-                        System.out.println("Found it");
                         buss.setId(dataSnapshot.getKey());
                         buss.setActive(basicBuss.getActive());
                         buss.setRegId(basicBuss.getRegId());
