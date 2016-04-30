@@ -28,6 +28,11 @@ public class BussLines {
         return grid;
     }
 
+    /**
+     * //TODO
+     * Replace this with 1 table with 2 arrays as a base. Array 1 will show a list with all the buss lines with ids, start and end stop while
+     * array 2 will present a single line with the option to add stops and edit fields.
+     */
     private void staticElements(){
         Text title = new Text("Buss Lines");
         title.getStyleClass().add("custom-smallTitle");
