@@ -30,6 +30,20 @@ public class Drivers {
     );
 
     public VBox init(){
+        tableSetup();
+        database.updateBuss(data);
+        setupButtons();
+
+        hb.setSpacing(5);
+        final VBox vbox = new VBox();
+        vbox.setSpacing(5);
+        vbox.setPadding(new Insets(10, 0, 0, 10));
+        vbox.getChildren().addAll(label, table, hb);
+
+        return vbox;
+    }
+
+    private void tableSetup(){
         table.setEditable(true);
 
         driverId = new TableColumn("Driver Id");
@@ -44,38 +58,13 @@ public class Drivers {
         name.setMinWidth(300);
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
 
-        getList();
-        setupAddButtons();
-
         table.setItems(data);
         table.setPrefWidth(250);
         table.setMinHeight(550);
         table.getColumns().addAll(driverId, id, name);
-        hb.setSpacing(5);
-        final VBox vbox = new VBox();
-        vbox.setSpacing(5);
-        vbox.setPadding(new Insets(10, 0, 0, 10));
-        vbox.getChildren().addAll(label, table, hb);
-
-        return vbox;
     }
 
-    /**
-     * Loads in information from firebase to populate the Table.
-     */
-    private void getList(){
-        ArrayList<Driver> list = database.getDriverList();
-        for (int i = 0; i < list.size(); i++){
-            data.add(new DriverTable(list.get(i).getDriverId(),list.get(i).getId(),list.get(i).getName()));
-        }
-    }
-
-
-    /**
-     * Adds 3 TextFields one for each value and then adds a Add and remove button.
-     * Also holds two text fields to provide feedback to the user when providing bad input.
-     */
-    private void setupAddButtons(){
+    private void setupButtons(){
         final Text warn = new Text("Invalid input! Please try again");
         warn.getStyleClass().add("custom-redTitle");
 
@@ -94,16 +83,23 @@ public class Drivers {
         addName.setPromptText("Name");
         addName.setMinWidth(name.getPrefWidth());
 
+        setupAddButton(addDriverId,addId,addName,warn,duplicate);
+        setupDeleteButton(addDriverId);
+    }
+
+
+    /**
+     * Adds 3 TextFields one for each value and then adds a Add and remove button.
+     * Also holds two text fields to provide feedback to the user when providing bad input.
+     */
+    private void setupAddButton(TextField addDriverId, TextField addId, TextField addName, Text warn, Text duplicate){
         Button addButton = new Button("Add");
         addButton.setOnAction((event) -> {
             if (checkInput(addDriverId.getText(),addName.getText(),addId.getText()) && checkForDuplicates(addId.getText(),addDriverId.getText(),addName.getText())){
-                data.add(new DriverTable(
-                        addDriverId.getText(),
-                        addId.getText(),
-                        addName.getText()));
                 database.saveDriver(new Driver(addDriverId.getText(),addId.getText(),addName.getText()));
 
                 hb.getChildren().remove(warn);
+                hb.getChildren().remove(duplicate);
                 addDriverId.clear();
                 addId.clear();
                 addName.clear();
@@ -120,17 +116,21 @@ public class Drivers {
             }
         });
 
+        hb.getChildren().addAll(addDriverId, addId, addName, addButton);
+    }
+
+    private void setupDeleteButton(TextField addDriverId){
         Button removeButton = new Button("Remove");
         removeButton.setOnAction((event) -> {
             for (int i = 0; i < data.size(); i++){
                 if(data.get(i).getDriverId().equals(addDriverId.getText())){
                     database.deleteDriver(data.get(i).getName());
                     data.remove(i);
+                    addDriverId.clear();
                 }
             }
         });
-
-        hb.getChildren().addAll(addDriverId, addId, addName, addButton, removeButton);
+        hb.getChildren().addAll(removeButton);
     }
 
     /**
@@ -142,7 +142,7 @@ public class Drivers {
      */
     private boolean checkInput(String driverId, String name, String id){
         Driver checkId = new Driver();
-        boolean check = false;
+        boolean check;
         if (driverId.length() == 5 && name.length() > 0 && id.length() == 11){
             check = true;
         }else {

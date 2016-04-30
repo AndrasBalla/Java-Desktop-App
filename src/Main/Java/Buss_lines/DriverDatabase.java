@@ -1,10 +1,9 @@
 package main.java.Buss_lines;
 
-import com.firebase.client.DataSnapshot;
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.ValueEventListener;
+import com.firebase.client.*;
+import javafx.collections.ObservableList;
 import main.java.Objekt.Driver;
+import main.java.Objekt.javaFxObjects.DriverTable;
 
 import java.util.ArrayList;
 
@@ -62,5 +61,50 @@ public class DriverDatabase {
     public void deleteDriver(String name){
         Firebase remove = new Firebase("https://buss-database.firebaseIO.com//live//people//drivers//" + name);
         remove.setValue(null);
+    }
+
+    public void updateBuss(ObservableList<DriverTable> data){
+
+        refDriver.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                System.out.println("Child added: " + dataSnapshot.getKey());
+                System.out.println(dataSnapshot);
+                Driver driver = dataSnapshot.getValue(Driver.class);
+                data.add(new DriverTable(driver.getDriverId(),driver.getId(),dataSnapshot.getKey()));
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                Driver basicDriver = dataSnapshot.getValue(Driver.class);
+                basicDriver.setName(dataSnapshot.getKey());
+                for (DriverTable driver: data){
+                    if (driver.getName().equals(dataSnapshot.getKey())){
+                        System.out.println("Found it");
+                        driver.setId(basicDriver.getId());
+                        driver.setName(dataSnapshot.getKey());
+                        driver.setDriverId(basicDriver.getDriverId());
+                    }
+                }
+                System.out.println("Child changed: " + dataSnapshot);
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                for (int i = 0; i < data.size(); i++) {
+                    if (data.get(i).getName().equals(dataSnapshot.getKey())) {
+                        data.remove(i);
+                    }
+                }
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                System.out.println("The read failed: " + firebaseError.getMessage());
+            }
+        });
     }
 }

@@ -5,8 +5,6 @@ import javafx.collections.ObservableList;
 import main.java.Objekt.*;
 import main.java.Objekt.javaFxObjects.BussTable;
 
-import java.util.ArrayList;
-
 /**
  * Created by Spiks on 2016-04-16.
  */
@@ -16,7 +14,6 @@ import java.util.ArrayList;
  */
 public class BussDatabase {
     private Firebase refBuss = new Firebase("https://buss-database.firebaseIO.com//live//garage");
-    private ArrayList<Buss> bussList = new ArrayList<>();
 
     /**
      * Uploads a buss Object to Firebase.
@@ -30,37 +27,6 @@ public class BussDatabase {
     }
 
     /**
-     * Gets all the buses from firebase and stores them in a array. UNUSED at the moment.
-     * @return ArrayList<Buss>.
-     */
-    public ArrayList<Buss> getBuss(ObservableList<BussTable> data){
-        refBuss.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                for (DataSnapshot postSnapshot: snapshot.getChildren()) {
-                    Buss buss = postSnapshot.getValue(Buss.class);
-                    bussList.add(buss);
-                    BussTable buses = new BussTable(buss.getId(),buss.getRegId(),buss.getActive() + "");
-                    if (data.contains(buses)){
-                        data.add(buses);
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-                System.out.println("The read failed: " + firebaseError.getMessage());
-            }
-        });
-        try {
-            Thread.sleep(300);
-        } catch (InterruptedException e){
-            e.printStackTrace();
-        }
-        return bussList;
-    }
-
-    /**
      * Removes a buss from firebase.
      * @param id String id of the Buss to be removed.
      */
@@ -69,6 +35,10 @@ public class BussDatabase {
         remove.setValue(null);
     }
 
+    /**
+     * Gets all the buses from the database and adds them to the table.
+     * @param data The ObservableList that used to populate the TableView.
+     */
     public void updateBuss(ObservableList<BussTable> data){
 
         refBuss.addChildEventListener(new ChildEventListener() {
@@ -108,7 +78,9 @@ public class BussDatabase {
             public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
 
             @Override
-            public void onCancelled(FirebaseError firebaseError) {}
+            public void onCancelled(FirebaseError firebaseError) {
+                System.out.println("The read failed: " + firebaseError.getMessage());
+            }
         });
     }
 }

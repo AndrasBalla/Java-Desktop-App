@@ -147,6 +147,7 @@ public class Garage {
         }else {
             return false;
         }
+
         for (int i = 0; i < id.length(); i++){
             if(!(Character.isDigit(id.charAt(i)))){
                 return false;
