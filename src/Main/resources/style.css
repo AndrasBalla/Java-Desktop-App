@@ -70,3 +70,7 @@
     -fx-border-style: solid;
     -fx-border-color: #464646;
 }
+
+.table-view .column-header{
+    -fx-border-color: #a3a09c;
+}

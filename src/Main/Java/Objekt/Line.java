@@ -1,7 +1,6 @@
 package main.java.Objekt;
 
 import java.util.ArrayList;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Created by Spiks on 2016-04-08.
@@ -15,8 +14,33 @@ public class Line {
     private String id;
     private ArrayList<Stop> stops = new ArrayList<>();
     private Buss buss;
+    private Stop source;
+    private Stop dest;
+
+    public Line (String id, Buss buss, Stop source, Stop dest){
+        this.id = id;
+        this.buss = buss;
+        this.source = source;
+        this.dest = dest;
+    }
 
     public Line (){}
+
+    public Stop getSource() {
+        return source;
+    }
+
+    public void setSource(Stop source) {
+        this.source = source;
+    }
+
+    public Stop getDest() {
+        return dest;
+    }
+
+    public void setDest(Stop dest) {
+        this.dest = dest;
+    }
 
     public Buss getBuss() {
         return buss;

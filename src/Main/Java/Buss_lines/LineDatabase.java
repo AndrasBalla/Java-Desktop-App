@@ -4,10 +4,11 @@ import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
-import javafx.scene.control.ComboBox;
+import javafx.collections.ObservableList;
 import main.java.Objekt.Buss;
 import main.java.Objekt.Line;
 import main.java.Objekt.Stop;
+import main.java.Objekt.javaFxObjects.LineTable;
 
 /**
  * Created by Spiks on 2016-04-30.
@@ -27,13 +28,15 @@ public class LineDatabase {
         newLine.child("buss").setValue(line.getBuss());
     }
 
-    public void updateLine(ComboBox lines){
+    public void updateLine(ObservableList<LineTable> data){
         refLine.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 System.out.println(dataSnapshot);
                 Line line = dataSnapshot.getValue(Line.class);
-                lines.getItems().add(dataSnapshot.getKey());
+                Buss buss = line.getBuss();
+                LineTable table = new LineTable(line.getId(),line.getSource(),line.getDest(),buss.getId(),buss.getRegId(),buss.getActive());
+                data.add(table);
             }
 
             @Override

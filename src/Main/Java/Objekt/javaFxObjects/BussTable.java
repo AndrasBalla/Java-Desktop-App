@@ -10,9 +10,9 @@ import javafx.beans.property.SimpleStringProperty;
  * Object used only for building the Table on the Garage screen.
  */
 public class BussTable {
-    private SimpleStringProperty id = null;
-    private SimpleStringProperty regId = null;
-    private SimpleStringProperty active = null;
+    private SimpleStringProperty id;
+    private SimpleStringProperty regId;
+    private SimpleStringProperty active;
 
     public BussTable(String id, String regId, String active){
         this.regId = new SimpleStringProperty(regId);

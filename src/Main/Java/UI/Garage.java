@@ -1,5 +1,6 @@
 package main.java.UI;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -15,14 +16,15 @@ import main.java.Objekt.javaFxObjects.BussTable;
 
 /**
  * Created by Spiks on 2016-04-29.
+ * In the project Buss_System
  */
 public class Garage {
     private BussDatabase database = new BussDatabase();
-    private final TableView<BussTable> table = new TableView();
+    private final TableView<BussTable> table = new TableView<>();
     private Label label = new Label("Garage");
-    private TableColumn idCol;
-    private TableColumn activeCol;
-    private TableColumn regCol;
+    private TableColumn<BussTable,SimpleStringProperty> idCol;
+    private TableColumn<BussTable,SimpleStringProperty> activeCol;
+    private TableColumn<BussTable,SimpleStringProperty> regCol;
     private HBox hb = new HBox();
     private ObservableList<BussTable> data = FXCollections.observableArrayList();
 
@@ -48,19 +50,19 @@ public class Garage {
     private void tableSetup(){
         table.setEditable(true);
 
-        idCol = new TableColumn("Buss Id");
+        idCol = new TableColumn<>("Buss Id");
         idCol.setMinWidth(250);
         idCol.setCellValueFactory(
                 new PropertyValueFactory<>("id")
         );
 
-        activeCol = new TableColumn("Active");
+        activeCol = new TableColumn<>("Active");
         activeCol.setMinWidth(250);
         activeCol.setCellValueFactory(
                 new PropertyValueFactory<>("active")
         );
 
-        regCol = new TableColumn("Registration nr.");
+        regCol = new TableColumn<>("Registration nr.");
         regCol.setMinWidth(250);
         regCol.setCellValueFactory(
                 new PropertyValueFactory<>("regId")
@@ -86,7 +88,7 @@ public class Garage {
         addId.setPromptText("Buss Id");
         addId.setMaxWidth(idCol.getPrefWidth());
 
-        final ComboBox comboBox = new ComboBox();
+        final ComboBox<String> comboBox = new ComboBox<>();
         comboBox.getItems().addAll("true","false");
 
         final TextField addRegId = new TextField();

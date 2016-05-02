@@ -2,8 +2,11 @@ package main.java.Buss_lines;
 
 import com.firebase.client.*;
 import javafx.collections.ObservableList;
+import javafx.scene.control.ComboBox;
 import main.java.Objekt.*;
 import main.java.Objekt.javaFxObjects.BussTable;
+
+import java.util.ArrayList;
 
 /**
  * Created by Spiks on 2016-04-16.
@@ -79,6 +82,32 @@ public class BussDatabase {
             public void onCancelled(FirebaseError firebaseError) {
                 System.out.println("The read failed: " + firebaseError.getMessage());
             }
+        });
+    }
+
+    public void getBussForLine(ComboBox<String> buss, ArrayList<Buss> buses){
+        refBuss.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Buss basicBuss = dataSnapshot.getValue(Buss.class);
+                buses.add(basicBuss);
+                if (basicBuss.getActive().equals("false"))
+                buss.getItems().add(basicBuss.getId());
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {}
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {}
         });
     }
 }
