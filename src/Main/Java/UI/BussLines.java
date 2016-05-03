@@ -116,20 +116,8 @@ public class BussLines {
         final ComboBox<String> addBuss = new ComboBox<>();
         bussDatabase.getBussForLine(addBuss,buses);
 
-        /*final TextField addBuss = new TextField();
-        addBuss.setPromptText("Buss");
-        addBuss.setMaxWidth(bussCol.getPrefWidth());*/
-
-        /*final TextField addSource = new TextField();
-        addSource.setPromptText("Source Station");
-        addSource.setMaxWidth(sourceCol.getPrefWidth());
-
-        final TextField addDestination = new TextField();
-        addDestination.setPromptText("Last Station");
-        addDestination.setMaxWidth(destinationCol.getPrefWidth());*/
-
         setupAddButton(addId,addBuss,warn,duplicate);
-        setupDeleteButton(addId);
+        setupDeleteButton(addId,addBuss);
     }
 
     private void setupAddButton(TextField addId, ComboBox addBuss, Text warn, Text duplicate){
@@ -137,6 +125,7 @@ public class BussLines {
         addButton.setOnAction((event) -> {
             if (checkInput(addId.getText()) && checkForDuplicates(addId.getText())){
                 database.saveLine(new Line(addId.getText(),getBuss(addBuss.getValue().toString())));
+                addBuss.getItems().remove(addBuss.getValue());
                 hb.getChildren().remove(warn);
                 hb.getChildren().remove(duplicate);
                 addId.clear();
@@ -156,16 +145,19 @@ public class BussLines {
         hb.getChildren().addAll(addId, addBuss, addButton);
     }
 
-    private void setupDeleteButton(TextField addId){
+    private void setupDeleteButton(TextField addId, ComboBox<String> addBuss){
         Button removeButton = new Button("Remove");
         removeButton.setOnAction((event) -> {
-            /*for (int i = 0; i < data.size(); i++){
+            for (int i = 0; i < data.size(); i++){
                 if(data.get(i).getId().equals(addId.getText())){
-                    database.deleteBuss(data.get(i).getId());
+                    database.deleteLine(data.get(i).getId());
+                    Buss removed = new Buss(data.get(i).getBussId(),data.get(i).getRegId(),"false");
+                    bussDatabase.saveBuss(removed);
+                    addBuss.getItems().add(removed.getId());
                     data.remove(i);
                     addId.clear();
                 }
-            }*/
+            }
         });
         hb.getChildren().add(removeButton);
     }

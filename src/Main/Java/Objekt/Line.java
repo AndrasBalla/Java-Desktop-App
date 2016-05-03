@@ -13,15 +13,13 @@ import java.util.ArrayList;
 public class Line {
     private String id;
     private ArrayList<Stop> stops = new ArrayList<>();
-    private Buss buss;
-    private Stop source;
-    private Stop dest;
+    private Buss buss = new Buss();
+    private Stop source = new Stop();
+    private Stop dest = new Stop();
 
-    public Line (String id, Buss buss, Stop source, Stop dest){
+    public Line (String id, Buss buss){
         this.id = id;
         this.buss = buss;
-        this.source = source;
-        this.dest = dest;
     }
 
     public Line (){}

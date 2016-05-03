@@ -69,6 +69,7 @@ public class DriverDatabase {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Driver driver = dataSnapshot.getValue(Driver.class);
+                System.out.println(dataSnapshot);
                 data.add(new DriverTable(driver.getDriverId(),driver.getId(),dataSnapshot.getKey()));
             }
 

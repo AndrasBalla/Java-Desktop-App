@@ -28,6 +28,11 @@ public class LineDatabase {
         newLine.child("buss").setValue(line.getBuss());
     }
 
+    public void deleteLine(String id){
+        Firebase remove = new Firebase("https://buss-database.firebaseIO.com//live//lines//" + id);
+        remove.setValue(null);
+    }
+
     public void updateLine(ObservableList<LineTable> data){
         refLine.addChildEventListener(new ChildEventListener() {
             @Override
@@ -40,7 +45,26 @@ public class LineDatabase {
             }
 
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {}
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                Line basicLine = dataSnapshot.getValue(Line.class);
+                for (LineTable line: data){
+                    if (dataSnapshot.getKey().equals(line.getId())){
+                        line.setId(dataSnapshot.getKey());
+                        line.setBussId(basicLine.getBuss().getId());
+                        line.setRegId(basicLine.getBuss().getRegId());
+                        line.setActive(basicLine.getBuss().getActive());
+
+                        line.setDestinationId(basicLine.getDest().getId());
+                        line.setDestinationLoc(basicLine.getDest().getLocation());
+                        line.setDestinationName(basicLine.getDest().getName());
+
+                        line.setSourceId(basicLine.getSource().getId());
+                        line.setSourceLoc(basicLine.getSource().getLocation());
+                        line.setSourceName(basicLine.getSource().getName());
+                    }
+                }
+                System.out.println("Child changed: " + dataSnapshot);
+            }
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {}
@@ -54,6 +78,8 @@ public class LineDatabase {
             }
         });
     }
+
+
 
     /*public Line setupTest(){
         Buss buss = new Buss("101","DXD868","false");
