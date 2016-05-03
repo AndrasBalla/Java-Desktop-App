@@ -8,7 +8,7 @@ public class Ticket {
     private String id;
     private String passengerName;
     private String cost;
-    private Line line;
+    private String lineId;
     private Stop destination;
     private Stop source;
     private String purchaseDate;
@@ -30,12 +30,12 @@ public class Ticket {
         this.purchaseDate = purchaseDate;
     }
 
-    public Line getLine() {
-        return line;
+    public String getLineId() {
+        return lineId;
     }
 
-    public void setLine(Line line) {
-        this.line = line;
+    public void setLineId(String lineId) {
+        this.lineId = lineId;
     }
 
     public String getCost() {

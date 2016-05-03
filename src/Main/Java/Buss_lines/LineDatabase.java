@@ -7,7 +7,6 @@ import com.firebase.client.FirebaseError;
 import javafx.collections.ObservableList;
 import main.java.Objekt.Buss;
 import main.java.Objekt.Line;
-import main.java.Objekt.Stop;
 import main.java.Objekt.javaFxObjects.LineTable;
 
 /**
@@ -37,7 +36,6 @@ public class LineDatabase {
         refLine.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                System.out.println(dataSnapshot);
                 Line line = dataSnapshot.getValue(Line.class);
                 Buss buss = line.getBuss();
                 LineTable table = new LineTable(line.getId(),line.getSource(),line.getDest(),buss.getId(),buss.getRegId(),buss.getActive());
@@ -78,20 +76,4 @@ public class LineDatabase {
             }
         });
     }
-
-
-
-    /*public Line setupTest(){
-        Buss buss = new Buss("101","DXD868","false");
-        Line line = new Line();
-        line.setId("11");
-        line.setBuss(buss);
-        Stop oneStop = new Stop("01","Ringen","Halmstad");
-        Stop twoStop = new Stop("02","Central","Halmstad");
-        Stop threeStop = new Stop("03","Tåg","Halmstad");
-        line.addStops(oneStop);
-        line.addStops(twoStop);
-        line.addStops(threeStop);
-        return line;
-    }*/
 }

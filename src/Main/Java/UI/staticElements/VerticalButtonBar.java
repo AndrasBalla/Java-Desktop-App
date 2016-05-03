@@ -1,4 +1,4 @@
-package main.java.UI;
+package main.java.UI.staticElements;
 
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;

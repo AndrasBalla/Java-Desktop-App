@@ -33,17 +33,21 @@ public class BussLines {
     private HBox hb = new HBox();
     private ObservableList<LineTable> data = FXCollections.observableArrayList();
     private ArrayList<Buss> buses = new ArrayList<>();
+    private HBox topBox = new HBox();
+    private final VBox vbox = new VBox();
 
     public VBox init(){
         tableSetup();
         database.updateLine(data);
         setupButtons();
 
+        topBox.setSpacing(5);
+        topBox.setPadding(new Insets(10, 0, 0, 10));
+
         hb.setSpacing(5);
-        final VBox vbox = new VBox();
         vbox.setSpacing(5);
         vbox.setPadding(new Insets(10, 0, 0, 10));
-        vbox.getChildren().addAll(label, table, hb);
+        vbox.getChildren().addAll(topBox, table, hb);
 
         return vbox;
     }
@@ -114,10 +118,11 @@ public class BussLines {
         addId.setMaxWidth(idCol.getPrefWidth());
 
         final ComboBox<String> addBuss = new ComboBox<>();
-        bussDatabase.getBussForLine(addBuss,buses);
+        bussDatabase.getBussForLine(addBuss,buses);//TODO Sort the Combobox
 
         setupAddButton(addId,addBuss,warn,duplicate);
         setupDeleteButton(addId,addBuss);
+        setupViewButtons();
     }
 
     private void setupAddButton(TextField addId, ComboBox addBuss, Text warn, Text duplicate){
@@ -162,14 +167,24 @@ public class BussLines {
         hb.getChildren().add(removeButton);
     }
 
+    private void setupViewButtons(){
+        Button listView = new Button("List View");
+        listView.setOnAction(event -> {
+            vbox.getChildren().remove(1,vbox.getChildren().size());
+            vbox.getChildren().addAll(table, hb);
+        });
+
+        Button detailedView = new Button("Detailed View");
+        detailedView.setOnAction(event -> {
+            DetailedBussLine det = new DetailedBussLine();
+            vbox.getChildren().remove(1,vbox.getChildren().size());
+            vbox.getChildren().add(det.init());
+        });
+        topBox.getChildren().addAll(label,listView,detailedView);
+    }
+
     private boolean checkInput(String id){
-        if (id.length() != 2){
-            return false;
-        }else if (Character.isDigit(id.charAt(0)) || Character.isDigit(id.charAt(1))){
-            return true;
-        }else {
-            return false;
-        }
+        return id.length() == 2 && Character.isDigit(id.charAt(0)) && Character.isDigit(id.charAt(1));
     }
 
     private boolean checkForDuplicates(String id){
