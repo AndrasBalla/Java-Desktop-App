@@ -12,14 +12,16 @@ public class Ticket {
     private Stop destination;
     private Stop source;
     private String purchaseDate;
-    private String FareDate;
+    private String fareDate;
+
+    public Ticket(){}
 
     public String getFareDate() {
-        return FareDate;
+        return fareDate;
     }
 
     public void setFareDate(String fareDate) {
-        FareDate = fareDate;
+        this.fareDate = fareDate;
     }
 
     public String getPurchaseDate() {
@@ -63,5 +65,21 @@ public class Ticket {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public Stop getDestination() {
+        return destination;
+    }
+
+    public void setDestination(Stop destination) {
+        this.destination = destination;
+    }
+
+    public Stop getSource() {
+        return source;
+    }
+
+    public void setSource(Stop source) {
+        this.source = source;
     }
 }

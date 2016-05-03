@@ -23,14 +23,14 @@ public class NavBar {
         Button personnel = new Button("Personnel");
         Button line = new Button("Buss Lines");
         Button tickets = new Button("Tickets");
-        Button bok = new Button("Book ticket");
+        Button book = new Button("Book ticket");
 
         bar.addButton(overview);
         bar.addButton(garage);
         bar.addButton(personnel);
         bar.addButton(line);
         bar.addButton(tickets);
-        bar.addButton(bok);
+        bar.addButton(book);
         menu.getChildren().addAll(bar);
 
         overview.setOnAction((event) -> {
@@ -54,10 +54,11 @@ public class NavBar {
         });
 
         tickets.setOnAction((event) -> {
-            borderPane.setCenter(new Text("Under Construction"));
+            Tickets ticket = new Tickets();
+            borderPane.setCenter(ticket.init());
         });
 
-        bok.setOnAction(event -> {
+        book.setOnAction(event -> {
             borderPane.setCenter(new Text("Under Construction"));
         });
     }
