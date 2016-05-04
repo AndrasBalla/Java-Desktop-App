@@ -4,6 +4,8 @@ import javafx.beans.property.SimpleStringProperty;
 
 /**
  * Created by Spiks on 2016-04-28.
+ * In the project Buss_System
+ * This Object is only used in the java fx Table.
  */
 public class DriverTable {
     private SimpleStringProperty driverId;
@@ -17,39 +19,21 @@ public class DriverTable {
 
     }
 
-    public String getDriverId() {
-        return driverId.get();
-    }
+    public String getDriverId() {return driverId.get();}
 
-    public SimpleStringProperty driverIdProperty() {
-        return driverId;
-    }
+    public SimpleStringProperty driverIdProperty() {return driverId;}
 
-    public void setDriverId(String driverId) {
-        this.driverId.set(driverId);
-    }
+    public void setDriverId(String driverId) {this.driverId.set(driverId);}
 
-    public String getName() {
-        return name.get();
-    }
+    public String getName() {return name.get();}
 
-    public SimpleStringProperty nameProperty() {
-        return name;
-    }
+    public SimpleStringProperty nameProperty() {return name;}
 
-    public void setName(String name) {
-        this.name.set(name);
-    }
+    public void setName(String name) {this.name.set(name);}
 
-    public String getId() {
-        return id.get();
-    }
+    public String getId() {return id.get();}
 
-    public SimpleStringProperty idProperty() {
-        return id;
-    }
+    public SimpleStringProperty idProperty() {return id;}
 
-    public void setId(String id) {
-        this.id.set(id);
-    }
+    public void setId(String id) {this.id.set(id);}
 }

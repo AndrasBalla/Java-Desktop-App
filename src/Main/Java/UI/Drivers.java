@@ -1,5 +1,6 @@
 package main.java.UI;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -12,18 +13,17 @@ import main.java.Buss_lines.DriverDatabase;
 import main.java.Objekt.Driver;
 import main.java.Objekt.javaFxObjects.DriverTable;
 
-import java.util.ArrayList;
-
 /**
  * Created by Spiks on 2016-04-28.
+ * In the project Buss_System
  */
 public class Drivers {
     private DriverDatabase database = new DriverDatabase();
-    private final TableView<DriverTable> table = new TableView();
+    private final TableView<DriverTable> table = new TableView<>();
     private Label label = new Label("Drivers");
-    private TableColumn driverId;
-    private TableColumn id;
-    private TableColumn name;
+    private TableColumn<DriverTable,SimpleStringProperty> driverId;
+    private TableColumn<DriverTable,SimpleStringProperty> id;
+    private TableColumn<DriverTable,SimpleStringProperty> name;
     private HBox hb = new HBox();
     private final ObservableList<DriverTable> data = FXCollections.observableArrayList(
             new DriverTable("25879", "910612-2011","Andreas Johanson")
@@ -31,7 +31,7 @@ public class Drivers {
 
     public VBox init(){
         tableSetup();
-        database.updateBuss(data);
+        database.updateDriver(data);
         setupButtons();
 
         hb.setSpacing(5);
@@ -46,15 +46,15 @@ public class Drivers {
     private void tableSetup(){
         table.setEditable(true);
 
-        driverId = new TableColumn("Driver Id");
+        driverId = new TableColumn<>("Driver Id");
         driverId.setMinWidth(300);
         driverId.setCellValueFactory(new PropertyValueFactory<>("driverId"));
 
-        id = new TableColumn("Personal Id");
+        id = new TableColumn<>("Personal Id");
         id.setMinWidth(300);
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
 
-        name = new TableColumn("Name");
+        name = new TableColumn<>("Name");
         name.setMinWidth(300);
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
 
@@ -143,11 +143,8 @@ public class Drivers {
     private boolean checkInput(String driverId, String name, String id){
         Driver checkId = new Driver();
         boolean check;
-        if (driverId.length() == 5 && name.length() > 0 && id.length() == 11){
-            check = true;
-        }else {
-            return false;
-        }
+        check = driverId.length() == 5 && name.length() > 0 && id.length() == 11;
+
         for (int i = 0; i < driverId.length(); i++){
             if(!(Character.isDigit(driverId.charAt(i)))){
                 return false;
@@ -164,8 +161,8 @@ public class Drivers {
      * @return true if no matches are found else false.
      */
     private boolean checkForDuplicates(String id, String driverId, String name){
-        for (int i = 0; i < data.size(); i++){
-            if (data.get(i).getId().equals(id) || data.get(i).getDriverId().equals(driverId) || data.get(i).getName().equals(name)){
+        for (DriverTable driver: data){
+            if (driver.getId().equals(id) || driver.getDriverId().equals(driverId) || driver.getName().equals(name)){
                 return false;
             }
         }

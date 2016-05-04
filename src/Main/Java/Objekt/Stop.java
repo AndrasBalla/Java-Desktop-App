@@ -7,6 +7,9 @@ package main.java.Objekt;
 
 /**
  * Object representing a Buss stop.
+ * The id of a stop is a two digit number these are unique inside a Line.
+ * The name contains the stops name usually inherited from a nearby building or address.
+ * The location is the city the buss stop is located in.
  */
 public class Stop {
     private String id;

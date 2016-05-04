@@ -2,12 +2,13 @@ package main.java.Objekt;
 
 /**
  * Created by Spiks on 2016-04-08.
+ * In the project Buss_System
  */
 
 /**
  * Driver Object that inherits from Person.
  * String driverId is a unique string of 5 digits.
- * String id is the drivers personal id provided by the Swedish state (Person nummer)
+ * String id is the drivers personal id provided by the Swedish state (Person number)
  * String name is the Drivers name First name + Last name.
  */
 public class Driver extends Person{
@@ -27,9 +28,7 @@ public class Driver extends Person{
         return driverId;
     }
 
-    public void setDriverId(String driverId) {
-        this.driverId = checkDriverId(driverId);
-    }
+    public void setDriverId(String driverId) {this.driverId = driverId;}
 
     @Override
     public String getId() {
@@ -53,18 +52,5 @@ public class Driver extends Person{
 
     public String toString(){
         return "Name: " + name + " Id: " + id + " Driver Id: " + driverId;
-    }
-
-    /**
-     * Checks the correctness of the driver id.
-     * @param driverId A string of 5 digits.
-     * @return The supplied driverId or null if it was invalid.
-     */
-    private String checkDriverId(String driverId){
-        if (driverId.length() != 5){
-            return null;
-        }else{
-            return driverId;
-        }
     }
 }

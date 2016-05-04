@@ -11,9 +11,6 @@ import java.util.ArrayList;
 /**
  * Created by Spiks on 2016-04-16.
  * In the project Buss_System
- */
-
-/**
  * BussDatabase Object that will hold all the methods used in communicating with Firebase.
  */
 public class BussDatabase {
@@ -56,14 +53,13 @@ public class BussDatabase {
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
                 Buss basicBuss = dataSnapshot.getValue(Buss.class);
                 basicBuss.setId(dataSnapshot.getKey());
-                for (BussTable buss: data){
+                data.stream().forEach(buss -> {
                     if (buss.getId().equals(dataSnapshot.getKey())){
                         buss.setId(dataSnapshot.getKey());
                         buss.setActive(basicBuss.getActive());
                         buss.setRegId(basicBuss.getRegId());
                     }
-                }
-                System.out.println("Child changed: " + dataSnapshot);
+                });
             }
 
             @Override
@@ -85,6 +81,11 @@ public class BussDatabase {
         });
     }
 
+    /**
+     * This method will get all the buses currently in the database and add the ones that are not active to a List.
+     * @param buss A comboBox that is used on the buss line screen this will get all the Buss ids that are not in use.
+     * @param buses A arrayList to hold all the inactive buses for later use.
+     */
     public void getBussForLine(ComboBox<String> buss, ArrayList<Buss> buses){
         refBuss.addChildEventListener(new ChildEventListener() {
             @Override

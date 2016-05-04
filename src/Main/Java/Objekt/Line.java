@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 /**
  * A Object that represents the line a buss will take.
+ * The Line id is a two digit number.
+ * More information about the stops and buss can be found in theyre files.
  */
 public class Line {
     private String id;

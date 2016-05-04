@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleStringProperty;
 /**
  * Created by Spiks on 2016-05-03.
  * In the project Buss_System
+ * This Object is only used in the java fx Table.
  */
 public class StopTable {
     private SimpleStringProperty id;

@@ -2,8 +2,19 @@ package main.java.Objekt;
 
 /**
  * Created by Spiks on 2016-04-08.
+ * In the project Buss_System
  */
-//TODO:Comments and just everything else :D
+
+/**
+ * The ticket object represents a passenger ticket.
+ * The id is a four digit number.
+ * The passengerName stands for the name of the passenger.
+ * Cost stands for the cost of the ticket.
+ * Line id shows which line the ticket is valid on.
+ * The destination and source are the stops the passenger has booked.
+ * Purchase date is the day the ticket was bought.
+ * Fare date is the day the ticket is valid.
+ */
 public class Ticket {
     private String id;
     private String passengerName;

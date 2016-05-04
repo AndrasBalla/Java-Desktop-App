@@ -11,10 +11,15 @@ import main.java.Objekt.javaFxObjects.TicketTable;
 /**
  * Created by Spiks on 2016-04-30.
  * In the project Buss_System
+ * TicketDatabase class that will hold all the methods used in communicating with Firebase.
  */
 public class TicketDatabase {
     private Firebase refTicket = new Firebase("https://buss-database.firebaseIO.com//live//tickets");
 
+    /**
+     * Uploads a ticket to firebase.
+     * @param ticket Ticket to be saved.
+     */
     public void saveTicket(Ticket ticket){
         Firebase newTicket = refTicket.child(ticket.getId());
         newTicket.child("id").setValue(ticket.getId());
@@ -27,6 +32,10 @@ public class TicketDatabase {
         newTicket.child("destination").setValue(ticket.getDestination());
     }
 
+    /**
+     * Gets all the tickets from the database and adds them to the table.
+     * @param data The ObservableList that used to populate the TableView.
+     */
     public void updateTicket(ObservableList<TicketTable> data){
 
         refTicket.addChildEventListener(new ChildEventListener() {
@@ -36,7 +45,6 @@ public class TicketDatabase {
                 TicketTable table = new TicketTable(ticket.getId(),ticket.getPassengerName(),ticket.getCost(),ticket.getLineId(),ticket.getPurchaseDate(),ticket.getFareDate(),
                         ticket.getSource(),ticket.getDestination());
                 data.add(table);
-                System.out.print(dataSnapshot);
             }
 
             @Override

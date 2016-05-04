@@ -23,7 +23,6 @@ public class Garage {
     private final TableView<BussTable> table = new TableView<>();
     private Label label = new Label("Garage");
     private TableColumn<BussTable,SimpleStringProperty> idCol;
-    private TableColumn<BussTable,SimpleStringProperty> activeCol;
     private TableColumn<BussTable,SimpleStringProperty> regCol;
     private HBox hb = new HBox();
     private ObservableList<BussTable> data = FXCollections.observableArrayList();
@@ -56,7 +55,7 @@ public class Garage {
                 new PropertyValueFactory<>("id")
         );
 
-        activeCol = new TableColumn<>("Active");
+        TableColumn<BussTable,SimpleStringProperty> activeCol = new TableColumn<>("Active");
         activeCol.setMinWidth(250);
         activeCol.setCellValueFactory(
                 new PropertyValueFactory<>("active")
@@ -75,7 +74,7 @@ public class Garage {
     }
 
     /**
-     * Sets up two texts for user feedback and three textfields for user input.
+     * Sets up two texts for user feedback and three textfield for user input.
      */
     private void setupButtons(){
         final Text warn = new Text("Invalid input! Please try again");
@@ -143,10 +142,11 @@ public class Garage {
     }
 
     private boolean checkInput(String id, String regId, ComboBox active){
-        boolean check = false;
-        if (id.length() == 3 && regId.length() == 6 && active.getValue() != null){
-            check = true;
-        }else {
+        boolean check;
+
+        check = id.length() == 3 && regId.length() == 6 && active.getValue() != null;
+
+        if (!check){
             return false;
         }
 
@@ -155,18 +155,16 @@ public class Garage {
                 return false;
             }
         }
-        if (Character.isLetter(regId.charAt(0)) && Character.isLetter(regId.charAt(1))&& Character.isLetter(regId.charAt(2)) &&
-                Character.isDigit(regId.charAt(3)) && Character.isDigit(regId.charAt(4)) && Character.isDigit(regId.charAt(5))){
-            check = true;
-        }else {
-            check = false;
-        }
+
+        check = Character.isLetter(regId.charAt(0)) && Character.isLetter(regId.charAt(1))&& Character.isLetter(regId.charAt(2)) &&
+                    Character.isDigit(regId.charAt(3)) && Character.isDigit(regId.charAt(4)) && Character.isDigit(regId.charAt(5));
+
         return check;
     }
 
     private boolean checkForDuplicates(String id, String regId){
-        for (int i = 0; i < data.size(); i++){
-            if (data.get(i).getId().equals(id) || data.get(i).getRegId().equals(regId)){
+        for (BussTable buss: data){
+            if (buss.getId().equals(id) || buss.getRegId().equals(regId)){
                 return false;
             }
         }

@@ -27,11 +27,19 @@ public class LineDatabase {
         newLine.child("buss").setValue(line.getBuss());
     }
 
+    /**
+     * Removes a line from the database.
+     * @param id The id value of the line to be removed.
+     */
     public void deleteLine(String id){
         Firebase remove = new Firebase("https://buss-database.firebaseIO.com//live//lines//" + id);
         remove.setValue(null);
     }
 
+    /**
+     * Gets all the lines from the database and adds them to the table.
+     * @param data The ObservableList that used to populate the TableView.
+     */
     public void updateLine(ObservableList<LineTable> data){
         refLine.addChildEventListener(new ChildEventListener() {
             @Override
@@ -45,7 +53,7 @@ public class LineDatabase {
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
                 Line basicLine = dataSnapshot.getValue(Line.class);
-                for (LineTable line: data){
+                data.stream().forEach(line -> {
                     if (dataSnapshot.getKey().equals(line.getId())){
                         line.setId(dataSnapshot.getKey());
                         line.setBussId(basicLine.getBuss().getId());
@@ -60,8 +68,7 @@ public class LineDatabase {
                         line.setSourceLoc(basicLine.getSource().getLocation());
                         line.setSourceName(basicLine.getSource().getName());
                     }
-                }
-                System.out.println("Child changed: " + dataSnapshot);
+                });
             }
 
             @Override

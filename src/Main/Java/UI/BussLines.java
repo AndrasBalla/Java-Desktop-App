@@ -20,6 +20,7 @@ import java.util.ArrayList;
 /**
  * Created by Spiks on 2016-04-30.
  * In the project Buss_System
+ * This class creates and maintains the UI window buss lines.
  */
 public class BussLines {
     private LineDatabase database = new LineDatabase();
@@ -27,15 +28,16 @@ public class BussLines {
     private final TableView<LineTable> table = new TableView<>();
     private Label label = new Label("Buss Lines");
     private TableColumn<LineTable,SimpleStringProperty> idCol;
-    private TableColumn<LineTable,SimpleStringProperty> bussCol;
-    private TableColumn<LineTable,SimpleStringProperty> sourceCol;
-    private TableColumn<LineTable,SimpleStringProperty> destinationCol;
     private HBox hb = new HBox();
     private ObservableList<LineTable> data = FXCollections.observableArrayList();
     private ArrayList<Buss> buses = new ArrayList<>();
     private HBox topBox = new HBox();
     private final VBox vbox = new VBox();
 
+    /**
+     * Initial setup of the window.
+     * @return VBox containing the elements needed.
+     */
     public VBox init(){
         tableSetup();
         database.updateLine(data);
@@ -63,7 +65,7 @@ public class BussLines {
         idCol.setMinWidth(250);
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
 
-        bussCol = new TableColumn<>("Buss");
+        TableColumn<LineTable,SimpleStringProperty> bussCol = new TableColumn<>("Buss");
         bussCol.setMinWidth(250);
         bussCol.setCellValueFactory(new PropertyValueFactory<>("buss"));
 
@@ -78,18 +80,18 @@ public class BussLines {
 
         bussCol.getColumns().addAll(bussId,bussRegId,bussActive);
 
-        sourceCol = new TableColumn<>("Starting station");
+        TableColumn<LineTable,SimpleStringProperty> sourceCol = new TableColumn<>("Starting station");
         sourceCol.setMinWidth(250);
 
         TableColumn<LineTable,SimpleStringProperty> sourceId = new TableColumn<>("Id");
-        sourceId.setCellValueFactory(new PropertyValueFactory<LineTable,SimpleStringProperty>("sourceId"));
+        sourceId.setCellValueFactory(new PropertyValueFactory<>("sourceId"));
         TableColumn<LineTable,SimpleStringProperty> sourceLoc = new TableColumn<>("Location");
         sourceLoc.setCellValueFactory(new PropertyValueFactory<>("sourceLoc"));
         TableColumn<LineTable,SimpleStringProperty> sourceName = new TableColumn<>("Name");
         sourceName.setCellValueFactory(new PropertyValueFactory<>("sourceName"));
         sourceCol.getColumns().addAll(sourceId,sourceLoc,sourceName);
 
-        destinationCol = new TableColumn<>("End station");
+        TableColumn<LineTable,SimpleStringProperty> destinationCol = new TableColumn<>("End station");
         destinationCol.setMinWidth(250);
 
         TableColumn<LineTable,SimpleStringProperty> destinationId = new TableColumn<>("Id");
@@ -125,6 +127,13 @@ public class BussLines {
         setupViewButtons();
     }
 
+    /**
+     * Setup the button to add elements and calls the error handling methods to check the input.
+     * @param addId Buss line id.
+     * @param addBuss Buss value.
+     * @param warn Text element for error feedback.
+     * @param duplicate Text element for duplicate value feedback.
+     */
     private void setupAddButton(TextField addId, ComboBox addBuss, Text warn, Text duplicate){
         Button addButton = new Button("Add");
         addButton.setOnAction((event) -> {
@@ -188,8 +197,8 @@ public class BussLines {
     }
 
     private boolean checkForDuplicates(String id){
-        for (int i = 0; i < data.size(); i++){
-            if (data.get(i).getId().equals(id)){
+        for (LineTable line:data) {
+            if (line.getId().equals(id)){
                 return false;
             }
         }
@@ -197,11 +206,11 @@ public class BussLines {
     }
 
     private Buss getBuss(String id){
-        for (int i = 0; i < buses.size(); i++){
-            if (buses.get(i).getId().equals(id)){
-                buses.get(i).setActive("true");
-                bussDatabase.saveBuss(buses.get(i));
-                return buses.get(i);
+        for(Buss buss: buses){
+            if (buss.getId().equals(id)){
+                buss.setActive("true");
+                bussDatabase.saveBuss(buss);
+                return buss;
             }
         }
         return null;

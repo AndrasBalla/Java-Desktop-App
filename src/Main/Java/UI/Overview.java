@@ -6,8 +6,6 @@ import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -18,10 +16,11 @@ import javafx.scene.text.Text;
 
 /**
  * Created by Spiks on 2016-04-22.
+ * In the project Buss_System
  */
 
 /**
- * This is the Main page of the Application.
+ * This is the Main page of the Application.//TODO REDO this screen since its bad.
  */
 public class Overview {
     private VBox root = new VBox(10);
@@ -38,11 +37,8 @@ public class Overview {
      */
     public VBox init(){
 
-        input.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                pushDataToFirebase(input.getText());
-            }
+        input.setOnAction(event -> {
+            pushDataToFirebase(input.getText());
         });
 
 

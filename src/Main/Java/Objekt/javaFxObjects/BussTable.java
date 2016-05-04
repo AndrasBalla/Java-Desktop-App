@@ -4,6 +4,7 @@ import javafx.beans.property.SimpleStringProperty;
 
 /**
  * Created by Spiks on 2016-04-23.
+ * In the project Buss_System
  */
 
 /**
@@ -20,52 +21,25 @@ public class BussTable {
         this.active = new SimpleStringProperty(active);
     }
 
-    public BussTable(){
+    public String getActive() {return active.get();}
 
-    }
+    public SimpleStringProperty activeProperty() {return active;}
 
-    public String getActive() {
-        return active.get();
-    }
+    public void setActive(String active) {this.active.set(active);}
 
-    public SimpleStringProperty activeProperty() {
-        return active;
-    }
+    public String getRegId() {return regId.get();}
 
-    public void setActive(String active) {
-        this.active.set(active);
-    }
+    public SimpleStringProperty regIdProperty() {return regId;}
 
-    public String getRegId() {
+    public void setRegId(String regId) {this.regId.set(regId);}
 
-        return regId.get();
-    }
+    public String getId() {return id.get();}
 
-    public SimpleStringProperty regIdProperty() {
-        return regId;
-    }
+    public SimpleStringProperty idProperty() {return id;}
 
-    public void setRegId(String regId) {
-        this.regId.set(regId);
-    }
-
-    public String getId() {
-
-        return id.get();
-    }
-
-    public SimpleStringProperty idProperty() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id.set(id);
-    }
+    public void setId(String id) {this.id.set(id);}
 
     public boolean equals(BussTable buss){
-        if (this.id.equals(buss.getId()) || this.regId.equals(buss.getRegId())){
-            return true;
-        }
-        return false;
+        return this.id.toString().equals(buss.getId()) || this.regId.toString().equals(buss.getRegId());
     }
 }
