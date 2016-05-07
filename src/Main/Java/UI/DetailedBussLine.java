@@ -10,7 +10,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import main.java.Buss_lines.LineDatabase;
+import main.java.Objekt.Line;
+import main.java.Objekt.Stop;
 import main.java.Objekt.javaFxObjects.StopTable;
+
+import java.util.ArrayList;
 
 /**
  * Created by Spiks on 2016-05-03.
@@ -24,17 +28,20 @@ public class DetailedBussLine {
     private TableColumn<StopTable,SimpleStringProperty> idCol;
     private TableColumn<StopTable,SimpleStringProperty> nameCol;
     private TableColumn<StopTable,SimpleStringProperty> locationCol;
+    private HBox choose = new HBox();
+    private ArrayList<Line> lines = new ArrayList<>();
+    private Line current = new Line();
 
     public VBox init(){
         tableSetup();
-        //database.updateLine(data);
         setupButtons();
+        setupLineChoice();
 
         hb.setSpacing(5);
         final VBox vbox = new VBox();
         vbox.setSpacing(5);
         vbox.setPadding(new Insets(10, 0, 0, 10));
-        vbox.getChildren().addAll(table, hb);
+        vbox.getChildren().addAll(choose,table, hb);
 
         return vbox;
     }
@@ -66,15 +73,15 @@ public class DetailedBussLine {
         duplicate.getStyleClass().add("custom-redTitle");
 
         final TextField addId = new TextField();
-        addId.setPromptText("Line Id");
+        addId.setPromptText("Stop Id");
         addId.setMaxWidth(idCol.getPrefWidth());
 
         final TextField addName = new TextField();
-        addName.setPromptText("Line Name");
+        addName.setPromptText("Stop Name");
         addName.setMaxWidth(nameCol.getPrefWidth());
 
         final TextField addLoc = new TextField();
-        addLoc.setPromptText("Line Location");
+        addLoc.setPromptText("Stop Location");
         addLoc.setMaxWidth(locationCol.getPrefWidth());
 
         setupAddButton(addId,addName,addLoc,warn,duplicate);
@@ -84,7 +91,9 @@ public class DetailedBussLine {
     private void setupAddButton(TextField addId, TextField addName,TextField addLoc, Text warn, Text duplicate) {
         Button addButton = new Button("Add");
         addButton.setOnAction((event) -> {
-
+            Stop stop = new Stop(addId.getText(),addName.getText(),addLoc.getText());
+            current.addStops(stop);
+            database.saveLine(current);
         });
         hb.getChildren().addAll(addId, addName,addLoc, addButton);
     }
@@ -104,5 +113,23 @@ public class DetailedBussLine {
             }*/
         });
         hb.getChildren().add(removeButton);
+    }
+
+    private void setupLineChoice(){
+        Label label = new Label("Choose a Line");
+        ComboBox<String> boxLines = new ComboBox<>();
+        database.getLineIds(boxLines,lines);
+        Button show = new Button("Show");
+
+        show.setOnAction(event ->{
+            data.clear();
+            database.getStops(data,boxLines.getValue());
+            lines.stream().forEach(line -> {
+                if (line.getId().equals(boxLines.getValue())){
+                    current = line;
+                }
+            });
+        });
+        hb.getChildren().addAll(label,boxLines,show);
     }
 }

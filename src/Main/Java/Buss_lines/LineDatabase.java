@@ -4,10 +4,16 @@ import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 import javafx.collections.ObservableList;
+import javafx.scene.control.ComboBox;
 import main.java.Objekt.Buss;
 import main.java.Objekt.Line;
+import main.java.Objekt.Stop;
 import main.java.Objekt.javaFxObjects.LineTable;
+import main.java.Objekt.javaFxObjects.StopTable;
+
+import java.util.ArrayList;
 
 /**
  * Created by Spiks on 2016-04-30.
@@ -82,5 +88,71 @@ public class LineDatabase {
                 System.out.println("The read failed: " + firebaseError.getMessage());
             }
         });
+    }
+
+    public void getLineIds(ComboBox<String> lines, ArrayList<Line> list){
+        refLine.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                lines.getItems().add(dataSnapshot.getKey());
+                Line basicLine = dataSnapshot.getValue(Line.class);
+                list.add(basicLine);
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {}
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {}
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {}
+        });
+    }
+
+    public void getStops(ObservableList<StopTable> data, String id){
+        refLine.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                System.out.println("Child added");
+                Line line = dataSnapshot.getValue(Line.class);
+                if (id.equals(line.getId())){
+                    ArrayList<Stop> lines = line.getStops();
+                    for (Stop stop: lines){
+                        data.add(new StopTable(stop.getId(),stop.getName(),stop.getLocation()));
+                    }
+                }
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                Line line = dataSnapshot.getValue(Line.class);
+                ArrayList<StopTable> tableList = new ArrayList<>();
+                System.out.println(dataSnapshot);
+                line.getStops().stream().forEach(stop -> {
+                    StopTable stopTable = new StopTable(stop.getId(),stop.getName(),stop.getLocation());
+                    tableList.add(stopTable);
+                });
+                data.setAll(tableList);
+            }
+
+
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {}
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {}
+        });
+    }
+
+    public void removeStop(){
+
     }
 }

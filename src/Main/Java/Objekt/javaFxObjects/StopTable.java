@@ -53,4 +53,11 @@ public class StopTable {
     public void setLocation(String location) {
         this.location.set(location);
     }
+
+    public boolean equals(StopTable in){
+        if (this.id.equals(in.getId())){
+            return true;
+        }
+        return false;
+    }
 }
