@@ -35,6 +35,7 @@ public class Drivers {
         setupButtons();
 
         hb.setSpacing(5);
+        table.sort();
         final VBox vbox = new VBox();
         vbox.setSpacing(5);
         vbox.setPadding(new Insets(10, 0, 0, 10));

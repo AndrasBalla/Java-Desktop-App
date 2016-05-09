@@ -91,9 +91,29 @@ public class DetailedBussLine {
     private void setupAddButton(TextField addId, TextField addName,TextField addLoc, Text warn, Text duplicate) {
         Button addButton = new Button("Add");
         addButton.setOnAction((event) -> {
-            Stop stop = new Stop(addId.getText(),addName.getText(),addLoc.getText());
-            current.addStops(stop);
-            database.saveLine(current);
+            if (checkInput(addId,addName,addLoc) && checkForDuplicates(addId.getText())){
+                Stop stop = new Stop(addId.getText(),addName.getText(),addLoc.getText());
+                current.addStops(stop);
+                current.setSource(current.getStops().get(0));
+                current.setDest(current.getStops().get(current.getStops().size()-1));
+                database.saveLine(current);
+                hb.getChildren().remove(warn);
+                hb.getChildren().remove(duplicate);
+                addId.clear();
+                addName.clear();
+                addLoc.clear();
+            }else if (!(checkInput(addId,addName,addLoc))){
+                hb.getChildren().remove(duplicate);
+                if (!(hb.getChildren().contains(warn))){
+                    hb.getChildren().add(warn);
+                }
+            }else {
+                hb.getChildren().remove(warn);
+                if (!(hb.getChildren().contains(duplicate))){
+                    hb.getChildren().add(duplicate);
+                }
+            }
+
         });
         hb.getChildren().addAll(addId, addName,addLoc, addButton);
     }
@@ -101,16 +121,10 @@ public class DetailedBussLine {
     private void setupDeleteButton(TextField addId){
         Button removeButton = new Button("Remove");
         removeButton.setOnAction((event) -> {
-            /*for (int i = 0; i < data.size(); i++){
-                if(data.get(i).getId().equals(addId.getText())){
-                    database.deleteLine(data.get(i).getId());
-                    Buss removed = new Buss(data.get(i).getBussId(),data.get(i).getRegId(),"false");
-                    bussDatabase.saveBuss(removed);
-                    addBuss.getItems().add(removed.getId());
-                    data.remove(i);
-                    addId.clear();
-                }
-            }*/
+            current.removeStop(addId.getText());
+            current.setSource(current.getStops().get(0));
+            current.setDest(current.getStops().get(current.getStops().size()-1));
+            database.saveLine(current);
         });
         hb.getChildren().add(removeButton);
     }
@@ -131,5 +145,18 @@ public class DetailedBussLine {
             });
         });
         hb.getChildren().addAll(label,boxLines,show);
+    }
+
+    private boolean checkInput(TextField addId, TextField addName,TextField addLoc){
+        return !(addName.getText().equals("") || addLoc.getText().equals("") || addId.getText().equals("")) && addId.getText().length() == 2 && current.getId() != null;
+    }
+
+    private boolean checkForDuplicates(String id){
+        for (StopTable stop:data) {
+            if (stop.getId().equals(id)){
+                return false;
+            }
+        }
+        return true;
     }
 }

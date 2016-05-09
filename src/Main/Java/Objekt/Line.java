@@ -70,6 +70,14 @@ public class Line {
         return stops;
     }
 
+    public void removeStop(String stopId){
+        for (int i = 0; i < stops.size(); i++){
+            if (stops.get(i).getId().equals(stopId)){
+                stops.remove(i);
+            }
+        }
+    }
+
     public String toString(){
         for (int i = 0; i < stops.size(); i++){
             System.out.println("Buss Stop: " + stops.get(i).toString());

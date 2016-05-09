@@ -31,6 +31,8 @@ public class LineDatabase {
         newLine.child("id").setValue(line.getId());
         newLine.child("stops").setValue(line.getStops());
         newLine.child("buss").setValue(line.getBuss());
+        newLine.child("dest").setValue(line.getDest());
+        newLine.child("source").setValue(line.getSource());
     }
 
     /**
@@ -117,7 +119,6 @@ public class LineDatabase {
         refLine.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                System.out.println("Child added");
                 Line line = dataSnapshot.getValue(Line.class);
                 if (id.equals(line.getId())){
                     ArrayList<Stop> lines = line.getStops();
@@ -131,7 +132,6 @@ public class LineDatabase {
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
                 Line line = dataSnapshot.getValue(Line.class);
                 ArrayList<StopTable> tableList = new ArrayList<>();
-                System.out.println(dataSnapshot);
                 line.getStops().stream().forEach(stop -> {
                     StopTable stopTable = new StopTable(stop.getId(),stop.getName(),stop.getLocation());
                     tableList.add(stopTable);

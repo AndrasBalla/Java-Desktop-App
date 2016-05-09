@@ -120,7 +120,7 @@ public class BussLines {
         addId.setMaxWidth(idCol.getPrefWidth());
 
         final ComboBox<String> addBuss = new ComboBox<>();
-        bussDatabase.getBussForLine(addBuss,buses);//TODO Sort the Combobox
+        bussDatabase.getBussForLine(addBuss,buses);
 
         setupAddButton(addId,addBuss,warn,duplicate);
         setupDeleteButton(addId,addBuss);
@@ -168,6 +168,8 @@ public class BussLines {
                     Buss removed = new Buss(data.get(i).getBussId(),data.get(i).getRegId(),"false");
                     bussDatabase.saveBuss(removed);
                     addBuss.getItems().add(removed.getId());
+                    addBuss.getItems().clear();
+                    bussDatabase.getBussForLine(addBuss,buses);
                     data.remove(i);
                     addId.clear();
                 }
