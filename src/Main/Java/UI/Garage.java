@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -24,6 +25,7 @@ public class Garage {
     private Label label = new Label("Garage");
     private TableColumn<BussTable,SimpleStringProperty> idCol;
     private TableColumn<BussTable,SimpleStringProperty> regCol;
+    private TableColumn<BussTable,SimpleStringProperty> activeCol;
     private HBox hb = new HBox();
     private ObservableList<BussTable> data = FXCollections.observableArrayList();
 
@@ -55,7 +57,7 @@ public class Garage {
                 new PropertyValueFactory<>("id")
         );
 
-        TableColumn<BussTable,SimpleStringProperty> activeCol = new TableColumn<>("Active");
+        activeCol = new TableColumn<>("Active");
         activeCol.setMinWidth(250);
         activeCol.setCellValueFactory(
                 new PropertyValueFactory<>("active")
@@ -71,6 +73,34 @@ public class Garage {
         table.setPrefWidth(250);
         table.setMinHeight(550);
         table.getColumns().addAll(idCol, activeCol, regCol);
+    }
+
+    private void tableEdit(TextField addId, ComboBox comboBox, TextField addRegId){
+        Button edit = new Button("Edit");
+        hb.getChildren().add(edit);
+
+        final Text warn = new Text("Invalid input! Please try again");
+        warn.getStyleClass().add("custom-redTitle");
+
+        edit.setOnAction(event -> {
+           if (checkInput(addId.getText(),addRegId.getText(),comboBox)){
+               String id = addId.getText();
+               hb.getChildren().remove(warn);
+                for (BussTable buss: data){
+                    if (buss.getId().equals(id)){
+                        buss.setRegId(addRegId.getText());
+                        buss.setActive(comboBox.getValue().toString());
+                        database.saveBuss(new Buss(id, addRegId.getText().toUpperCase(),comboBox.getValue().toString()));
+                    }
+                }
+               addId.clear();
+               addRegId.clear();
+            }else if (!(checkInput(addId.getText(),addRegId.getText(),comboBox))) {
+               if (!(hb.getChildren().contains(warn))) {
+                   hb.getChildren().add(warn);
+               }
+           }
+        });
     }
 
     /**
@@ -96,6 +126,7 @@ public class Garage {
 
         setupAddButton(addId,addRegId,comboBox,warn,duplicate);
         setupDeleteButton(addId);
+        tableEdit(addId, comboBox,addRegId);
     }
 
     /**

@@ -4,12 +4,11 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 
+import javafx.scene.text.Text;
 import main.java.Buss_lines.TicketDatabase;
 import main.java.Objekt.Stop;
 import main.java.Objekt.Ticket;
@@ -96,4 +95,5 @@ public class Tickets {
         table.setMinHeight(550);
         table.getColumns().addAll(idCol, nameCol, costCol, lineIdCol, purchaseDateCol, fareDateCol, sourceCol, destCol);
     }
+
 }

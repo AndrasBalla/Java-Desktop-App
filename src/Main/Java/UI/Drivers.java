@@ -86,6 +86,36 @@ public class Drivers {
 
         setupAddButton(addDriverId,addId,addName,warn,duplicate);
         setupDeleteButton(addDriverId);
+        tableEdit(addDriverId, addId, addName);
+    }
+
+    private void tableEdit(TextField addDriverId, TextField addId, TextField addName){
+        Button edit = new Button("Edit");
+        hb.getChildren().add(edit);
+
+        final Text warn = new Text("Invalid input! Please try again");
+        warn.getStyleClass().add("custom-redTitle");
+
+        edit.setOnAction(event -> {
+            if (checkInput(addDriverId.getText(),addName.getText(),addId.getText())){
+                String id = addId.getText();
+                hb.getChildren().remove(warn);
+                for (DriverTable driver: data){
+                    if (driver.getId().equals(id)){
+                        driver.setDriverId(addDriverId.getText());
+                        driver.setName(addName.getText());
+                        database.saveDriver(new Driver(addDriverId.getText(),addId.getText(),addName.getText()));
+                    }
+                }
+                addDriverId.clear();
+                addId.clear();
+                addName.clear();
+            }else if (!(checkInput(addDriverId.getText(),addName.getText(),addId.getText()))) {
+                if (!(hb.getChildren().contains(warn))) {
+                    hb.getChildren().add(warn);
+                }
+            }
+        });
     }
 
 

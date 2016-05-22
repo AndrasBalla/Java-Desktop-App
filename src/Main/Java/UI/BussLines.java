@@ -125,6 +125,43 @@ public class BussLines {
         setupAddButton(addId,addBuss,warn,duplicate);
         setupDeleteButton(addId,addBuss);
         setupViewButtons();
+        tableEdit(addId,addBuss);
+    }
+
+    private void tableEdit(TextField addId, ComboBox addBuss){
+        Button edit = new Button("Edit");
+        hb.getChildren().add(edit);
+
+        final Text warn = new Text("Invalid input! Please try again");
+        warn.getStyleClass().add("custom-redTitle");
+
+        edit.setOnAction(event -> {
+            if (checkInput(addId.getText())){
+                String id = addId.getText();
+                hb.getChildren().remove(warn);
+                for (LineTable line: data){
+                    if (line.getId().equals(id)){
+                        Buss buss = getBuss(addBuss.getValue().toString());
+                        Buss old = new Buss(line.getBussId(),line.getRegId(),line.getActive());
+                        if (!(old.getId().equals(buss.getId()))){
+                            old.setActive("false");
+                            bussDatabase.saveBuss(old);
+                            addBuss.getItems().clear();
+                            bussDatabase.getBussForLine(addBuss,buses);
+                        }
+                        line.setBussId(buss.getId());
+                        line.setRegId(buss.getRegId());
+                        line.setActive(buss.getActive());
+                        database.updateLine(new Line(addId.getText(),buss));
+                    }
+                }
+                addId.clear();
+            }else if (!(checkInput(addId.getText()))) {
+                if (!(hb.getChildren().contains(warn))) {
+                    hb.getChildren().add(warn);
+                }
+            }
+        });
     }
 
     /**

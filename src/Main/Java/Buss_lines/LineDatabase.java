@@ -35,6 +35,11 @@ public class LineDatabase {
         newLine.child("source").setValue(line.getSource());
     }
 
+    public void updateLine(Line line){
+        Firebase updateLine = new Firebase("https://buss-database.firebaseIO.com//live//lines//" + line.getId() + "//buss");
+        updateLine.setValue(line.getBuss());
+    }
+
     /**
      * Removes a line from the database.
      * @param id The id value of the line to be removed.

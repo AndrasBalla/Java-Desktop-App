@@ -86,6 +86,39 @@ public class DetailedBussLine {
 
         setupAddButton(addId,addName,addLoc,warn,duplicate);
         setupDeleteButton(addId);
+        tableEdit(addId,addName,addLoc);
+    }
+
+    private void tableEdit(TextField addId, TextField addName,TextField addLoc){
+        Button edit = new Button("Edit");
+        hb.getChildren().add(edit);
+
+        final Text warn = new Text("Invalid input! Please try again");
+        warn.getStyleClass().add("custom-redTitle");
+
+        edit.setOnAction(event -> {
+            if (checkInput(addId,addName,addLoc)){
+                String id = addId.getText();
+                hb.getChildren().remove(warn);
+                for (StopTable stop: data){
+                    if (stop.getId().equals(id)){
+                        stop.setName(addName.getText());
+                        stop.setLocation(addLoc.getText());
+                        current.updateStop(id,addName.getText(),addLoc.getText());
+                        current.setSource(current.getStops().get(0));
+                        current.setDest(current.getStops().get(current.getStops().size()-1));
+                        database.saveLine(current);
+                    }
+                }
+                addId.clear();
+                addName.clear();
+                addLoc.clear();
+            }else if (!(checkInput(addId,addName,addLoc))){
+                if (!(hb.getChildren().contains(warn))){
+                    hb.getChildren().add(warn);
+                }
+            }
+        });
     }
 
     private void setupAddButton(TextField addId, TextField addName,TextField addLoc, Text warn, Text duplicate) {

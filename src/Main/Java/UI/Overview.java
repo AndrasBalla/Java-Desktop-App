@@ -6,12 +6,18 @@ import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
 import javafx.application.Platform;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import main.java.Buss_lines.NoteDatabase;
+import main.java.Objekt.javaFxObjects.NoteTable;
 
 
 /**
@@ -23,83 +29,133 @@ import javafx.scene.text.Text;
  * This is the Main page of the Application.//TODO REDO this screen since its bad.
  */
 public class Overview {
+    private NoteDatabase database = new NoteDatabase();
     private VBox root = new VBox(10);
     private HBox titleBox = new HBox();
     private Text title = new Text("Buss Deluxe");
-    private TextField input = new TextField();
-    private Firebase ref = new Firebase("https://buss-database.firebaseIO.com//live//system");
-    private Label helpText = new Label("This is the Start page for the application Buss Deluxe.\n You can save notes here simply by writing YYYY-MM-DD and your note this will stay here " +
-            "on the page to serve as a reminder");
+    private Label label = new Label("Sticky Notes");
+    private final TableView<NoteTable> table = new TableView<>();
+    private ObservableList<NoteTable> data = FXCollections.observableArrayList();
+    private HBox hb = new HBox();
+    private TableColumn<NoteTable,SimpleStringProperty> date;
+    private TableColumn<NoteTable,SimpleStringProperty> message;
 
     /**
      * Initial setup of the page.
      * @return A VBox panel with the page content.
      */
     public VBox init(){
-
-        input.setOnAction(event -> {
-            pushDataToFirebase(input.getText());
-        });
-
+        tableSetup();
+        database.getPost(data);
+        setupButtons();
 
         title.getStyleClass().add("custom-title");
         title.setId("custom-title");
         titleBox.getChildren().addAll(title);
         titleBox.setAlignment(Pos.CENTER);
-        loadDataFromFirebase();
 
-        root.getChildren().addAll(titleBox,input,helpText);
+        hb.setSpacing(5);
+        root.setSpacing(5);
+        root.setPadding(new Insets(10, 0, 0, 10));
+        root.getChildren().addAll(titleBox,label,table,hb);
         return root;
     }
 
-    /**
-     * Loads in the Post-it notes from the Firebase database.
-     */
-    private void loadDataFromFirebase(){
+    private void tableSetup(){
+        date = new TableColumn<>("Date");
+        date.setMinWidth(250);
+        date.setCellValueFactory(new PropertyValueFactory<>("date"));
 
-        //ref.addListenerForSingleValueEvent(new ValueEventListener() {
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                for (DataSnapshot postSnapshot: snapshot.getChildren()) {
-                   presentOnList(postSnapshot.getKey() + ": " + postSnapshot.getValue());
+        message = new TableColumn<>("Message");
+        message.setMinWidth(500);
+        message.setCellValueFactory(new PropertyValueFactory<>("message"));
+
+        table.setItems(data);
+        table.setPrefWidth(250);
+        table.setMinHeight(500);
+        table.getColumns().addAll(date,message);
+    }
+
+    private void setupButtons(){
+        final Text warn = new Text("Invalid input! Please try again");
+        warn.getStyleClass().add("custom-redTitle");
+
+        final Text duplicate = new Text("Duplicate input! Please try again");
+        duplicate.getStyleClass().add("custom-redTitle");
+
+        final TextField addDate = new TextField();
+        addDate.setPromptText("Date");
+        addDate.setMaxWidth(date.getPrefWidth());
+
+        final TextField addMessage = new TextField();
+        addMessage.setPromptText("Message");
+        addMessage.setMaxWidth(message.getPrefWidth());
+
+        setupAddButton(addDate,addMessage,warn,duplicate);
+        setupDeleteButton(addDate);
+    }
+
+    private void setupAddButton(TextField addDate, TextField addMessage,Text warn, Text duplicate){
+        Button addButton = new Button("Add");
+        addButton.setOnAction(event -> {
+            if (checkInput(addDate.getText(),addMessage.getText()) && checkForDuplicates(addDate.getText())){
+                database.saveNote(addDate.getText(),addMessage.getText());
+                hb.getChildren().remove(warn);
+                hb.getChildren().remove(duplicate);
+                addDate.clear();
+                addMessage.clear();
+            }else if (!(checkInput(addDate.getText(),addMessage.getText()))){
+                hb.getChildren().remove(duplicate);
+                if (!(hb.getChildren().contains(warn))) {
+                    hb.getChildren().add(warn);
+                }
+            }else {
+                hb.getChildren().remove(warn);
+                if (!(hb.getChildren().contains(duplicate))){
+                    hb.getChildren().add(duplicate);
                 }
             }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-                System.out.println("The read failed: " + firebaseError.getMessage());
-            }
         });
+        hb.getChildren().addAll(addDate, addMessage, addButton);
     }
 
-    /**
-     * Uploads new Post-it notes to firebase.
-     * @param input A string containing a note this needs to be YYYY-MM-DD + message.
-     */
-    private void pushDataToFirebase(String input){
-        String key = input.substring(0,10);
-        String value = input.substring(10);
-        ref.child(key).setValue(value);
-        try {
-            Thread.sleep(4000);
-        } catch (InterruptedException e){
-            e.printStackTrace();
+    private void setupDeleteButton(TextField addDate){
+        Button removeButton = new Button("Remove");
+        removeButton.setOnAction(event -> {
+            data.stream().forEach(noteTable -> {
+                if (noteTable.getDate().equals(addDate.getText())){
+                    database.removeNote(addDate.getText());
+                    removeFromList(noteTable);
+                    addDate.clear();
+                }
+            });
+        });
+        hb.getChildren().add(removeButton);
+    }
+
+    private boolean checkInput(String date, String message){
+        System.out.println("Checking input date:" + date);
+        return date.length() == 10 && message.length() > 0 && date.charAt(4) == '-' && date.charAt(7) == '-';
+    }
+
+    private boolean checkForDuplicates(String date){
+        for (NoteTable note:data) {
+            if (note.getDate().equals(date)){
+                return false;
+            }
         }
+        return true;
     }
 
     /**
-     * Adds new content to the Page.
+     * Removes a child element from the list.
      * @param input Post-it note.
      */
-    private void presentOnList(String input){
+    private void removeFromList(NoteTable input){
         Platform.runLater(new Runnable(){
             @Override
             public void run() {
-                Label in = new Label(input);
-                VBox holder = new VBox();
-                holder.getChildren().add(in);
-                root.getChildren().add(holder);
+                data.remove(input);
             }
         });
     }

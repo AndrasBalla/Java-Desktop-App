@@ -78,6 +78,15 @@ public class Line {
         }
     }
 
+    public void updateStop(String id, String name, String loc){
+        stops.stream().forEach(stop1 -> {
+            if (stop1.getId().equals(id)){
+                stop1.setName(name);
+                stop1.setLocation(loc);
+            }
+        });
+    }
+
     public String toString(){
         for (int i = 0; i < stops.size(); i++){
             System.out.println("Buss Stop: " + stops.get(i).toString());
