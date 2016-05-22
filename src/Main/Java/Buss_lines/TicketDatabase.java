@@ -32,6 +32,11 @@ public class TicketDatabase {
         newTicket.child("destination").setValue(ticket.getDestination());
     }
 
+    public void removeTicket(String id){
+        Firebase removeTicket = new Firebase("https://buss-database.firebaseIO.com//live//tickets//" + id);
+        removeTicket.setValue(null);
+    }
+
     /**
      * Gets all the tickets from the database and adds them to the table.
      * @param data The ObservableList that used to populate the TableView.
@@ -48,24 +53,22 @@ public class TicketDatabase {
             }
 
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {}
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-
+                for (int i = 0; i < data.size(); i++) {
+                    if (data.get(i).getId().equals(dataSnapshot.getKey())) {
+                        data.remove(i);
+                    }
+                }
             }
 
             @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
 
             @Override
-            public void onCancelled(FirebaseError firebaseError) {
-
-            }
+            public void onCancelled(FirebaseError firebaseError) {}
         });
 
     }

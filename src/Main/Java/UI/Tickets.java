@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import javafx.scene.text.Text;
@@ -23,14 +24,17 @@ public class Tickets {
     private final TableView<TicketTable> table = new TableView<>();
     private Label label = new Label("Tickets");
     private final ObservableList<TicketTable> data = FXCollections.observableArrayList();
+    private HBox hb = new HBox();
 
     public VBox init(){
         tableSetup();
+        setupDelete();
         database.updateTicket(data);
         final VBox vbox = new VBox();
+        hb.setSpacing(5);
         vbox.setSpacing(5);
         vbox.setPadding(new Insets(10, 0, 0, 10));
-        vbox.getChildren().addAll(label, table);
+        vbox.getChildren().addAll(label, table, hb);
 
         return vbox;
     }
@@ -46,6 +50,18 @@ public class Tickets {
         ticket.setSource(new Stop("01","Source","Neverland"));
         ticket.setDestination(new Stop("05","Dest","Wonderlanad"));
         return ticket;
+    }
+
+    private void setupDelete(){
+        final TextField addId = new TextField("Id");
+        addId.setPromptText("Buss Id");
+        addId.setMaxWidth(75);
+
+        Button remove = new Button("Remove");
+        remove.setOnAction(event -> {
+            database.removeTicket(addId.getText());
+        });
+        hb.getChildren().addAll(addId,remove);
     }
 
     private void tableSetup(){
