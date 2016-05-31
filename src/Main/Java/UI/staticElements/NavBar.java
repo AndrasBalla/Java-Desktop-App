@@ -59,7 +59,8 @@ public class NavBar {
         });
 
         book.setOnAction(event -> {
-            borderPane.setCenter(new Text("Under Construction"));
+            BookTicket bookTicket = new BookTicket();
+            borderPane.setCenter(bookTicket.init());
         });
     }
 }

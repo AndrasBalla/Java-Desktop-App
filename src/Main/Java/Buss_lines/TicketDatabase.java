@@ -72,4 +72,37 @@ public class TicketDatabase {
         });
 
     }
+
+    public void ticketId (Ticket ticket){
+        refTicket.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                int foo = Integer.parseInt(dataSnapshot.getKey()) + 1;
+                String id;
+                if (foo < 10){
+                    id = "000" + foo;
+                }else if(foo < 100){
+                    id = "00" + foo;
+                }else if (foo < 1000){
+                    id = "0" + foo;
+                }else {
+                    id = "" + foo;
+                }
+
+                ticket.setId(id);
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {}
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {}
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {}
+        });
+    }
 }

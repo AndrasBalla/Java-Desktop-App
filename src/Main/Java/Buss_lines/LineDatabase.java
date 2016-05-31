@@ -144,8 +144,6 @@ public class LineDatabase {
                 data.setAll(tableList);
             }
 
-
-
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {}
 
@@ -157,7 +155,41 @@ public class LineDatabase {
         });
     }
 
-    public void removeStop(){
+    public void getStopsComboBox(ComboBox<String> addOrigin,ComboBox<String> addDest, String id, ArrayList<Stop> stops){
+        refLine.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Line line = dataSnapshot.getValue(Line.class);
+                if (id.equals(line.getId())){
+                    ArrayList<Stop> lines = line.getStops();
+                    for (Stop stop: lines){
+                        addOrigin.getItems().add(stop.getName());
+                        addDest.getItems().add(stop.getName());
+                        stops.add(stop);
+                    }
+                }
+            }
 
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                Line line = dataSnapshot.getValue(Line.class);
+                ArrayList<StopTable> tableList = new ArrayList<>();
+                line.getStops().stream().forEach(stop -> {
+                    StopTable stopTable = new StopTable(stop.getId(),stop.getName(),stop.getLocation());
+                    tableList.add(stopTable);
+                });
+                //data.setAll(tableList);
+                //data.getItems().setAll(tableList);
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {}
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {}
+        });
     }
 }

@@ -86,7 +86,7 @@ public class Tickets {
         TableColumn<TicketTable,SimpleStringProperty> fareDateCol = new TableColumn<>("Fare date");
         fareDateCol.setCellValueFactory(new PropertyValueFactory<>("fareDate"));
 
-        TableColumn<TicketTable,SimpleStringProperty> sourceCol = new TableColumn<>("Fare start");
+        TableColumn<TicketTable,SimpleStringProperty> sourceCol = new TableColumn<>("Origin");
         TableColumn<TicketTable,SimpleStringProperty> sourceId = new TableColumn<>("Id");
         sourceId.setCellValueFactory(new PropertyValueFactory<>("sourceId"));
         TableColumn<TicketTable,SimpleStringProperty> sourceLoc = new TableColumn<>("Location");
