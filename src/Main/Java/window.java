@@ -36,8 +36,8 @@ public class Window extends Application {
         StackPane root = new StackPane();
         root.getChildren().add(border);
         Scene scene = new Scene(root, 1250, 750);
-        //scene.getStylesheets().add("style.css");//Line for Gradle
-        scene.getStylesheets().add("main/resources/style.css");//line for run with intelj.
+        scene.getStylesheets().add("style.css");//Line for Gradle
+        //scene.getStylesheets().add("main/resources/style.css");//line for run with intelj.
         primaryStage.setScene(scene);
         primaryStage.show();
     }

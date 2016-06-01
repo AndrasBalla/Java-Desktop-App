@@ -4,7 +4,6 @@ import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 import main.java.Objekt.Buss;
@@ -57,10 +56,12 @@ public class LineDatabase {
         refLine.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Line line = dataSnapshot.getValue(Line.class);
-                Buss buss = line.getBuss();
-                LineTable table = new LineTable(line.getId(),line.getSource(),line.getDest(),buss.getId(),buss.getRegId(),buss.getActive());
-                data.add(table);
+                if (!(dataSnapshot.getKey().equals("keep"))){
+                    Line line = dataSnapshot.getValue(Line.class);
+                    Buss buss = line.getBuss();
+                    LineTable table = new LineTable(line.getId(),line.getSource(),line.getDest(),buss.getId(),buss.getRegId(),buss.getActive());
+                    data.add(table);
+                }
             }
 
             @Override
@@ -101,9 +102,11 @@ public class LineDatabase {
         refLine.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                lines.getItems().add(dataSnapshot.getKey());
-                Line basicLine = dataSnapshot.getValue(Line.class);
-                list.add(basicLine);
+                if (!(dataSnapshot.getKey().equals("keep"))){
+                    lines.getItems().add(dataSnapshot.getKey());
+                    Line basicLine = dataSnapshot.getValue(Line.class);
+                    list.add(basicLine);
+                }
             }
 
             @Override
@@ -124,11 +127,13 @@ public class LineDatabase {
         refLine.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Line line = dataSnapshot.getValue(Line.class);
-                if (id.equals(line.getId())){
-                    ArrayList<Stop> lines = line.getStops();
-                    for (Stop stop: lines){
-                        data.add(new StopTable(stop.getId(),stop.getName(),stop.getLocation()));
+                if (!(dataSnapshot.getKey().equals("keep"))){
+                    Line line = dataSnapshot.getValue(Line.class);
+                    if (id.equals(line.getId())){
+                        ArrayList<Stop> lines = line.getStops();
+                        for (Stop stop: lines){
+                            data.add(new StopTable(stop.getId(),stop.getName(),stop.getLocation()));
+                        }
                     }
                 }
             }
@@ -159,13 +164,15 @@ public class LineDatabase {
         refLine.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Line line = dataSnapshot.getValue(Line.class);
-                if (id.equals(line.getId())){
-                    ArrayList<Stop> lines = line.getStops();
-                    for (Stop stop: lines){
-                        addOrigin.getItems().add(stop.getName());
-                        addDest.getItems().add(stop.getName());
-                        stops.add(stop);
+                if (!(dataSnapshot.getKey().equals("keep"))){
+                    Line line = dataSnapshot.getValue(Line.class);
+                    if (id.equals(line.getId())){
+                        ArrayList<Stop> lines = line.getStops();
+                        for (Stop stop: lines){
+                            addOrigin.getItems().add(stop.getName());
+                            addDest.getItems().add(stop.getName());
+                            stops.add(stop);
+                        }
                     }
                 }
             }

@@ -31,8 +31,10 @@ public class NoteDatabase {
         ref.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Note note = dataSnapshot.getValue(Note.class);
-                data.add(new NoteTable(dataSnapshot.getKey(),note.getMessage()));
+                if (!(dataSnapshot.getKey().equals("keep"))){
+                    Note note = dataSnapshot.getValue(Note.class);
+                    data.add(new NoteTable(dataSnapshot.getKey(),note.getMessage()));
+                }
             }
 
             @Override

@@ -108,9 +108,12 @@ public class BookTicket {
     }
 
     private void submit(Button book){
+        final Text warn = new Text("Invalid input! Please try again");
+        warn.getStyleClass().add("custom-redTitle");
         String currentDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         book.setOnAction(event -> {
             if (checkInput()){
+                grid.getChildren().remove(warn);
                 ticket.setPassengerName(addName.getText());
                 ticket.setFareDate(addDate.getText());
                 ticket.setPurchaseDate(currentDate);
@@ -122,6 +125,7 @@ public class BookTicket {
             }else {
                 System.out.println(ticket.getId());
                 System.out.println("Try again");
+                grid.add(warn, 2, 7);
             }
         });
     }

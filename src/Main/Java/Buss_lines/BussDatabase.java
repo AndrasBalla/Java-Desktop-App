@@ -45,21 +45,24 @@ public class BussDatabase {
         refBuss.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Buss buss = dataSnapshot.getValue(Buss.class);
-                data.add(new BussTable(dataSnapshot.getKey(),buss.getRegId(),buss.getActive() + ""));
+                if (!(dataSnapshot.getKey().equals("keep"))) {
+                    Buss buss = dataSnapshot.getValue(Buss.class);
+                    data.add(new BussTable(dataSnapshot.getKey(),buss.getRegId(),buss.getActive() + ""));
+                }
             }
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                Buss basicBuss = dataSnapshot.getValue(Buss.class);
-                basicBuss.setId(dataSnapshot.getKey());
-                data.stream().forEach(buss -> {
-                    if (buss.getId().equals(dataSnapshot.getKey())){
-                        buss.setId(dataSnapshot.getKey());
-                        buss.setActive(basicBuss.getActive());
-                        buss.setRegId(basicBuss.getRegId());
-                    }
-                });
+
+                    Buss basicBuss = dataSnapshot.getValue(Buss.class);
+                    basicBuss.setId(dataSnapshot.getKey());
+                    data.stream().forEach(buss -> {
+                        if (buss.getId().equals(dataSnapshot.getKey())){
+                            buss.setId(dataSnapshot.getKey());
+                            buss.setActive(basicBuss.getActive());
+                            buss.setRegId(basicBuss.getRegId());
+                        }
+                    });
             }
 
             @Override
@@ -90,10 +93,12 @@ public class BussDatabase {
         refBuss.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Buss basicBuss = dataSnapshot.getValue(Buss.class);
-                buses.add(basicBuss);
-                if (basicBuss.getActive().equals("false"))
-                buss.getItems().add(basicBuss.getId());
+                if (!(dataSnapshot.getKey().equals("keep"))){
+                    Buss basicBuss = dataSnapshot.getValue(Buss.class);
+                    buses.add(basicBuss);
+                    if (basicBuss.getActive().equals("false"))
+                        buss.getItems().add(basicBuss.getId());
+                }
             }
 
             @Override

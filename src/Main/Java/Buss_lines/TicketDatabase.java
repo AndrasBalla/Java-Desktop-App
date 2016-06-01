@@ -46,10 +46,12 @@ public class TicketDatabase {
         refTicket.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Ticket ticket = dataSnapshot.getValue(Ticket.class);
-                TicketTable table = new TicketTable(ticket.getId(),ticket.getPassengerName(),ticket.getCost(),ticket.getLineId(),ticket.getPurchaseDate(),ticket.getFareDate(),
-                        ticket.getSource(),ticket.getDestination());
-                data.add(table);
+                if (!(dataSnapshot.getKey().equals("keep"))){
+                    Ticket ticket = dataSnapshot.getValue(Ticket.class);
+                    TicketTable table = new TicketTable(ticket.getId(),ticket.getPassengerName(),ticket.getCost(),ticket.getLineId(),ticket.getPurchaseDate(),ticket.getFareDate(),
+                            ticket.getSource(),ticket.getDestination());
+                    data.add(table);
+                }
             }
 
             @Override
@@ -77,19 +79,21 @@ public class TicketDatabase {
         refTicket.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                int foo = Integer.parseInt(dataSnapshot.getKey()) + 1;
-                String id;
-                if (foo < 10){
-                    id = "000" + foo;
-                }else if(foo < 100){
-                    id = "00" + foo;
-                }else if (foo < 1000){
-                    id = "0" + foo;
-                }else {
-                    id = "" + foo;
-                }
+                if (!(dataSnapshot.getKey().equals("keep"))){
+                    int foo = Integer.parseInt(dataSnapshot.getKey()) + 1;
+                    String id;
+                    if (foo < 10){
+                        id = "000" + foo;
+                    }else if(foo < 100){
+                        id = "00" + foo;
+                    }else if (foo < 1000){
+                        id = "0" + foo;
+                    }else {
+                        id = "" + foo;
+                    }
 
-                ticket.setId(id);
+                    ticket.setId(id);
+                }
             }
 
             @Override
