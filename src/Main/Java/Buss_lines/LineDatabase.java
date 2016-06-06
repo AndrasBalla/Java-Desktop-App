@@ -98,6 +98,11 @@ public class LineDatabase {
         });
     }
 
+    /**
+     * Gets the ids of all the Lines in the database. Saves the lines to an array for latyer use and puts the Ids in a combobox for use.
+     * @param lines ComboBox used in the UI.
+     * @param list Array that is used to recreate the Line when selected.
+     */
     public void getLineIds(ComboBox<String> lines, ArrayList<Line> list){
         refLine.addChildEventListener(new ChildEventListener() {
             @Override
@@ -123,6 +128,11 @@ public class LineDatabase {
         });
     }
 
+    /**
+     * Gets all the stops in a specific Buss Line.
+     * @param data List that is used by a Table to show the result by the user.
+     * @param id The id of the line.
+     */
     public void getStops(ObservableList<StopTable> data, String id){
         refLine.addChildEventListener(new ChildEventListener() {
             @Override
@@ -185,8 +195,6 @@ public class LineDatabase {
                     StopTable stopTable = new StopTable(stop.getId(),stop.getName(),stop.getLocation());
                     tableList.add(stopTable);
                 });
-                //data.setAll(tableList);
-                //data.getItems().setAll(tableList);
             }
 
             @Override
